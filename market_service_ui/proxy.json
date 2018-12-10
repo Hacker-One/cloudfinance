@@ -1,0 +1,1 @@
+{  "/v1": {    "target": "http://localhost:8080",    "secure": false,    "router" : {      "/v1/index": "http://localhost:8080",      "/v1/finances": "http://localhost:8080"    }  }}

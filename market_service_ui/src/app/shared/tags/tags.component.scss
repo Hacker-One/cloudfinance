@@ -1,0 +1,15 @@
+.chip {
+  display: inline-block;
+  height: 32px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: #4db6ac;
+  /* margin-bottom: 1px; */
+  margin:5px!important;
+  cursor: pointer;
+  transition: all .3s linear;
+}

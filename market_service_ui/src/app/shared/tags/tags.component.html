@@ -1,0 +1,13 @@
+<!--<div fxLayout="row wrap"  >-->
+    <!--<div *ngFor="let tag of tags" fxFlex="100" [fxFlex.gt-sm]="'25'"  class="col">-->
+
+            <!--<button mat-icon-button matTooltip="{{tag}}" ><mat-icon>compare</mat-icon></button>-->
+    <!--</div>-->
+<!--</div>-->
+<div fxLayout="row" fxLayout.xs="column" [fxLayoutAlign]="align" class="text-muted">
+    <div >
+        <button *ngFor="let tag of tagicon"  mat-icon-button matTooltip="{{tag.name}}" ><mat-icon>{{tag.icon}}</mat-icon></button>
+    </div>
+</div>
+
+

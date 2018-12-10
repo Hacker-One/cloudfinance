@@ -1,0 +1,41 @@
+<div class="mat-table orders-table">
+    <div class="mat-header-row">
+      <div class="mat-header-cell" fxFlex="120" fxFlex.gt-xs="40">商品名称</div>
+      <div class="mat-header-cell" fxFlex="120" fxFlex.gt-xs="40">订单时间</div>
+      <div class="mat-header-cell" fxFlex="120" fxFlex.gt-xs="40">订单状态</div>
+      <!--<div class="mat-header-cell" fxFlex="120" fxFlex.gt-xs="40">操作</div>-->
+    </div>
+
+    <div *ngFor="let order of orders | paginate: { itemsPerPage: count, currentPage: page,totalItems:total }" class="mat-row">
+      <div class="mat-cell" fxFlex="120" fxFlex.gt-xs="40">
+          <span class="order">
+               <a [routerLink]="['/', order.productId, order.productName]" class="image-link">
+                       {{order.productName}}
+                    </a>
+          </span>
+      </div>
+      <div class="mat-cell" fxFlex="120" fxFlex.gt-xs="40">{{ order.createDate | date:'yyyy年MM月dd日 HH:mm:ss' }}</div>
+      <div class="mat-cell" class="{{order.orderStatus=='paid'?'success':'error'}}" fxFlex="120" fxFlex.gt-xs="40">{{order.orderStatusName}}</div>
+      <!--<div class="mat-cell" fxFlex="120" fxFlex.gt-xs="40">-->
+        <!--<div class="p-1 actions">-->
+          <!--<button mat-mini-fab color="primary" matTooltip="查看">-->
+              <!--<mat-icon>remove_red_eye</mat-icon>-->
+          <!--</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+    <div  *ngIf="orders.length==0" fxLayout="row wrap" style="text-align: center">
+        <div fxFlex="100">
+            <span>
+                暂无订单数据
+            </span>
+        </div>
+    </div>
+    <div *ngIf="orders.length > 0" fxLayout="row wrap">
+        <div fxFlex="100">
+            <mat-card class="p-0 text-center">
+                <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)" nextLabel="下一页" previousLabel="上一页"></pagination-controls>
+            </mat-card>
+        </div>
+    </div>
+  </div>

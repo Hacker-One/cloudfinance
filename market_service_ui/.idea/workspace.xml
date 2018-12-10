@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a0cf239f-929c-4ead-bbe0-40a1930fbdfc" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="products.component.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/products/products.component.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="95" selection-start-line="95" selection-end-line="95" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../QloudMarket/Dockerfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="109" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="109" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="angular.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../QloudMarket/angular.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="start.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/start.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="products.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/products/products.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="59" column="181" selection-start-line="59" selection-start-column="151" selection-end-line="59" selection-end-column="181" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-244" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="baseConfig.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/config/baseConfig.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="3" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requestHandle.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/util/requestHandle.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.routing.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/app.routing.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>decrement</find>
+      <find>ControlsComponent</find>
+      <find>favorite</find>
+      <find>shopping_cart</find>
+      <find>shopping</find>
+      <find>'Material Icons'</find>
+      <find>icon</find>
+      <find>tags</find>
+      <find>images</find>
+      <find>image</find>
+      <find>@ViewChild</find>
+      <find>childNodes</find>
+      <find>sortings</find>
+      <find>changeSorting</find>
+      <find>count</find>
+      <find>sort</find>
+      <find>sidenav</find>
+      <find>app-options</find>
+      <find>palette</find>
+      <find>type</find>
+      <find>getCategorys</find>
+      <find>this.page</find>
+      <find>@media screen\0</find>
+      <find>changeQuery</find>
+      <find>accountMenuTrigger</find>
+      <find>openProductDialog</find>
+      <find>closeMenu</find>
+      <find>activatedRoute</find>
+      <find>dist</find>
+      <find>.py-1</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src/app/pages/products</dir>
+      <dir>$PROJECT_DIR$/src/app/pages/account</dir>
+      <dir>$PROJECT_DIR$/src</dir>
+      <dir>$PROJECT_DIR$/node_modules</dir>
+      <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/src/app/pages</dir>
+      <dir>$PROJECT_DIR$/node_modules/@angular/core/src/linker</dir>
+      <dir>$PROJECT_DIR$/node_modules/@angular/core/src</dir>
+      <dir>$PROJECT_DIR$/src/app</dir>
+    </dirStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/app/theme/utils/app-interceptor.ts" />
+        <option value="$PROJECT_DIR$/qloudmart/util/handleResUtil.js" />
+        <option value="$PROJECT_DIR$/src/app/shared/products-carousel/product-dialog/product-dialog.component.html" />
+        <option value="$PROJECT_DIR$/src/app/shared/products-carousel/goOrder-dialog/goOrder-dialog.component.html" />
+        <option value="$PROJECT_DIR$/src/app/shared/products-carousel/product-dialog/product-dialog.component.ts" />
+        <option value="$PROJECT_DIR$/qloudmart/service/api.order.js" />
+        <option value="$PROJECT_DIR$/src/app/pages/account/orders/orders.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/not-found/not-found.component.html" />
+        <option value="$PROJECT_DIR$/src/app/pages/account/orders/orders.component.html" />
+        <option value="$PROJECT_DIR$/src/app/shared/tags/controls.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/tags/controls.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/shared/tags/controls.component.html" />
+        <option value="$PROJECT_DIR$/src/app/shared/shared.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/tags/tags.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/shared/tags/tags.component.html" />
+        <option value="$PROJECT_DIR$/src/app/app.models.ts" />
+        <option value="$PROJECT_DIR$/src/app/shared/tags/tags.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/product/product.component.html" />
+        <option value="$PROJECT_DIR$/src/app/shared/products-carousel/goOrder-dialog/goOrder-dialog.component.ts" />
+        <option value="$PROJECT_DIR$/qloudmart/service/api.product.js" />
+        <option value="$PROJECT_DIR$/src/app/pages/home/home.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/home/home.component.html" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/products.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/home/home.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/pages.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/pages.component.html" />
+        <option value="$PROJECT_DIR$/src/app/pages/sign-in/sign-in.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/app.routing.ts" />
+        <option value="$PROJECT_DIR$/qloudmart/service/api.auth.js" />
+        <option value="$PROJECT_DIR$/src/app/local.storage.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/sign-in/sign-in.component.html" />
+        <option value="$PROJECT_DIR$/src/app/pages/account/account.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/account/orders/orders.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/theme/utils/RouteguardService.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/product/product.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/products.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/sign-in/sign-in.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/theme/components/top-menu/top-menu.component.html" />
+        <option value="$PROJECT_DIR$/src/app/theme/components/top-menu/top-menu.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/products.component.html" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/products.component.scss" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/../QloudMarket/angular.json" />
+        <option value="$PROJECT_DIR$/../QloudMarket/qloudmart/util/requestHandle.js" />
+        <option value="$PROJECT_DIR$/../QloudMarket/qloudmart/web/index.html" />
+        <option value="$PROJECT_DIR$/../QloudMarket/src/app/app.routing.ts" />
+        <option value="$PROJECT_DIR$/../QloudMarket/qloudmart/config/baseConfig.json" />
+        <option value="$PROJECT_DIR$/../QloudMarket/start.sh" />
+        <option value="$PROJECT_DIR$/../QloudMarket/qloudmart/start.sh" />
+        <option value="$PROJECT_DIR$/../QloudMarket/Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBowerSettings">
+    <node-interpreter value="project" />
+    <bower-package value="" />
+    <bower.json value="" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/../QloudMarket/package.json" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/../QloudMarket/node_modules" />
+    <handled-path value="$PROJECT_DIR$/../QloudMarket/qloudmart/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/../QloudMarket/package.json" />
+      <path value="$PROJECT_DIR$/../QloudMarket/qloudmart/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="emporium" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QloudMarket" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emporium" type="b2602c69:ProjectViewProjectNode" />
+              <item name="QloudMarket" type="462c0819:PsiDirectoryNode" />
+              <item name="qloudmart" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.prettier" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.jscs" value="project" />
+    <property name="node.js.path.for.package.prettier" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="" />
+    <property name="node.js.selected.package.jscs" value="" />
+    <property name="node.js.selected.package.prettier" value="" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$/node_modules/tslint" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="$USER_HOME$/.nvm/versions/node/v6.11.3/bin/node" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.tslint" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/../QloudMarket/node_modules/typescript/lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../QloudMarket/qloudmart" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/qloudmart/service" />
+      <recent name="$PROJECT_DIR$/src/assets" />
+      <recent name="$PROJECT_DIR$/src/app/shared" />
+      <recent name="$PROJECT_DIR$/src/app/shared/products-carousel" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a0cf239f-929c-4ead-bbe0-40a1930fbdfc" name="Default" comment="" />
+      <created>1539831246414</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1539831246414</updated>
+      <workItem from="1539831248350" duration="23974000" />
+      <workItem from="1539864369782" duration="67000" />
+      <workItem from="1539917061022" duration="42492000" />
+      <workItem from="1540037108186" duration="29134000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="95667000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.28965518" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
+      <window_info anchor="bottom" id="Docker" order="7" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/theme/styles/googleCss.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10215">
+          <caret line="681" column="34" selection-start-line="681" selection-start-column="4" selection-end-line="681" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/shared/tags/tags.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="108" selection-start-line="8" selection-start-column="108" selection-end-line="8" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/shared/controls/controls.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/app.models.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/shared/tags/tags.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/shared/products-carousel/goOrder-dialog/goOrder-dialog.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/node_modules/typescript/lib/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="15028" column="4" selection-start-line="15028" selection-start-column="4" selection-end-line="15028" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/node_modules/@angular/core/src/debug/debug_node.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/node_modules/@angular/core/src/linker/template_ref.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-134">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/node_modules/@angular/core/src/linker/view_container_ref.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1137">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/node_modules/@angular/core/src/linker/view_ref.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-837">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/node_modules/@angular/core/src/linker/query_list.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-478">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/node_modules/@angular/core/src/linker/element_ref.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/account/addresses/addresses.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="35" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="15" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/service/api.product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="170" column="41" selection-start-line="170" selection-start-column="41" selection-end-line="170" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/shared/shared.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="160" column="26" selection-start-line="160" selection-start-column="4" selection-end-line="160" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/products/products.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="13" column="67" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/home/home.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/home/home.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="58" column="27" lean-forward="true" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/home/home.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/theme/components/sidenav-menu/sidenav-menu.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-642">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/pages.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="31" column="74" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="31" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/theme/components/options/options.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/pages.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="146" column="35" lean-forward="true" selection-start-line="146" selection-start-column="3" selection-end-line="146" selection-end-column="35" />
+          <folding>
+            <element signature="n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" />
+            <element signature="n#style#0;n#a#0;n#span#0;n#mat-toolbar-row#0;n#mat-toolbar#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/theme/components/options/options.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/sign-in/sign-in.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="52778" lean-forward="true" selection-start-line="52778" selection-end-line="52778" />
+          <folding>
+            <element signature="e#77943#78143#2" expanded="true" />
+            <element signature="e#78371#78520#2" expanded="true" />
+            <element signature="e#79080#79226#2" expanded="true" />
+            <element signature="e#79579#79745#1" expanded="true" />
+            <element signature="e#96995#97235#2" expanded="true" />
+            <element signature="e#98236#98482#2" expanded="true" />
+            <element signature="e#131712#131902#2" expanded="true" />
+            <element signature="e#131956#132146#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/service/api.order.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="25" column="77" selection-start-line="25" selection-start-column="77" selection-end-line="25" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/service/api.auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/sign-in/sign-in.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="66" column="60" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="60" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#1367#1416#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/local.storage.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/account/orders/orders.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="58" column="20" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/account/account.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="40" column="3" lean-forward="true" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/theme/utils/RouteguardService.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="47" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/products/product/product.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="162" column="46" selection-start-line="162" selection-start-column="8" selection-end-line="162" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/sign-in/sign-in.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/theme/components/top-menu/top-menu.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="70" column="59" selection-start-line="70" selection-start-column="59" selection-end-line="70" selection-end-column="59" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/theme/components/top-menu/top-menu.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="34" column="41" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/products/product/product.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="46" column="58" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="58" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#mat-tab#0;n#mat-tab-group#0;n#mat-card#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/products/products.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="159" column="111" selection-start-line="159" selection-start-column="111" selection-end-line="159" selection-end-column="111" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#mat-sidenav-content#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#mat-sidenav-content#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#mat-card#0;n#div#0;n#div#1;n#mat-sidenav-content#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#mat-card#0;n#div#0;n#div#1;n#mat-sidenav-content#0;n#mat-sidenav-container#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/products/products.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/pages/products/products.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="59" column="181" selection-start-line="59" selection-start-column="151" selection-end-line="59" selection-end-column="181" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-244" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/web/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="8" selection-start-line="5" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/src/app/app.routing.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/util/requestHandle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/config/baseConfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/angular.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/qloudmart/start.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../QloudMarket/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="109" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="Copyright.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

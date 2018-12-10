@@ -1,0 +1,18 @@
+
+<div class="close-btn-outer">
+    <button mat-mini-fab color="warn" (click)="close()"><mat-icon>close</mat-icon></button>
+</div>
+<div mat-dialog-content>
+    <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+            <h2 class="text-muted text-center">是否跳转到订单页？</h2>
+            <div class="mt-2">
+                <a mat-raised-button  (click)="close()">否</a>
+                &nbsp;&nbsp;&nbsp;
+                <a mat-raised-button color="primary" (click)="goOrder()">是</a>
+            </div>
+            <div class="text-center mt-2">
+
+            </div>
+        </div>
+</div>

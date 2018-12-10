@@ -1,0 +1,19 @@
+
+<div class="close-btn-outer">
+    <button mat-mini-fab color="warn" (click)="close()"><mat-icon>close</mat-icon></button>
+</div>
+<div mat-dialog-content>
+    <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-sm="100" class="p-2">
+            <h2 class="text-muted text-center">验证码</h2>
+            <form [formGroup]="infoForm" (ngSubmit)="onInfoFormSubmit(infoForm.value)">
+                <mat-form-field class="w-100 mt-2">
+                    <input matInput placeholder="验证码" formControlName="purchaseCode" required>
+                    <mat-error *ngIf="infoForm.controls.purchaseCode.errors?.required">验证码不可为空</mat-error>
+                </mat-form-field>
+                <div class="text-center mt-2">
+                    <a mat-raised-button color="primary" (click)="onInfoFormSubmit(infoForm.value)" >确定</a>
+                </div>
+            </form>
+        </div>
+</div>

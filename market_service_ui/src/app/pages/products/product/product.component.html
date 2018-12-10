@@ -1,0 +1,176 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-md="35" fxFlex.md="45">
+
+        <mat-card class="product-image" *ngIf="image">
+            <button mat-icon-button (click)="openZoomViewer()" fxHide="false" fxHide.gt-md><mat-icon>fullscreen</mat-icon></button>
+            <img *ngIf="image" [src]="image" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave($event)"/>
+        </mat-card>
+
+        <div class="small-carousel">
+            <div class="swiper-container" [swiper]="config">
+                <div class="swiper-wrapper">
+                    <div *ngFor="let image of images" class="swiper-slide">
+                        <mat-card (click)="selectImage(image.url)" class="p-1">
+                            <img [attr.data-src]="image.url" class="swiper-lazy"/>
+                            <div class="swiper-lazy-preloader"></div>
+                        </mat-card>
+                    </div>
+                </div>
+                <button mat-icon-button class="swiper-button-prev swipe-arrow"><mat-icon>keyboard_arrow_left</mat-icon></button>
+                <button mat-icon-button class="swiper-button-next swipe-arrow"><mat-icon>keyboard_arrow_right</mat-icon></button>
+            </div>
+        </div>
+
+
+    </div>
+    <div fxFlex="100" fxFlex.gt-md="65" fxFlex.md="55" ngClass.gt-sm="px-3 m-0" ngClass.sm="mt-2" ngClass.xs="mt-2">
+
+        <div #zoomViewer fxShow="false" fxShow.gt-md>
+            <mat-card *ngIf="zoomImage" class="zoom-viewer mat-elevation-z18" [ngStyle]="{'background-image': 'url(' + zoomImage + ')'}"></mat-card>
+        </div>
+
+        <h2>{{product?.name}}</h2>
+        <div class="py-1 lh">
+            <p><span class="text-muted fw-500">Type: </span><span>{{product?.typeName}}</span></p>
+        </div>
+        <div class="py-1 lh">
+            <p><span class="text-muted fw-500">Category: </span><span>{{product?.categoryName}}</span></p>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="details text-muted py-1">
+            <div class="color">
+                <span class="fw-500">产品地址:</span>&nbsp;&nbsp;&nbsp;<a href="avascript:void(0)" (click)="open()">{{product?.descUrl}} </a>
+            </div>
+        </div>
+        <!--<div class="py-1">-->
+            <!--<app-rating [ratingsCount]="product?.ratingsCount" [ratingsValue]="product?.ratingsValue" [direction]="'row'"></app-rating>-->
+        <!--</div>-->
+        <p class="py-1 text-muted lh">{{product?.shortDesc}}</p>
+
+        <div class="divider mt-1" *ngIf="product?.tags&&product?.tags.length>0"></div>
+        <app-tags [tags]="product?.tags"></app-tags>
+        <div class="divider mt-1"></div>
+        <!--<h2 class="py-2 new-price">${{product?.newPrice}}</h2>-->
+
+        <!--<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="details text-muted py-1">-->
+            <!--<div *ngIf="product?.color" class="color">-->
+                <!--<span class="fw-500">Select Color:</span>-->
+                <!--<button mat-raised-button *ngFor="let color of product?.color" [style.background]="color">&nbsp;</button>-->
+            <!--</div>-->
+            <!--<div *ngIf="product?.size" class="size" ngClass.xs="mt-1">-->
+                <!--<span class="fw-500">Select Size:</span>-->
+                <!--<button mat-raised-button *ngFor="let size of product?.size">{{size}}</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="py-1">
+            <div fxLayout="row" fxLayout.xs="column" [fxLayoutAlign]="'start'" class="text-muted">
+                    <button  color="primary" class="mat-raised-button mat-primary"  (click)="openProductDialog()">
+                        <span class="mat-button-wrapper">GET</span>
+                        <div class="mat-button-ripple mat-ripple"></div>
+                        <div class="mat-button-focus-overlay"></div>
+                    </button>
+            </div>
+            <!--<app-controls [product]="product" [type]="'all'" (onOpenProductDialog)="openProductDialog()"></app-controls>-->
+        </div>
+
+        <div class="divider"></div>
+
+        <!--<div fxLayout="row" fxLayoutAlign="space-between center" class="text-muted py-1">-->
+            <!--<button mat-button><mat-icon>mail_outline</mat-icon> Email to a Friend</button>-->
+            <!--<button mat-icon-button><mat-icon>share</mat-icon></button>-->
+        <!--</div>-->
+
+    </div>
+    <!--<div fxFlex="100" fxFlex.gt-md="20" fxHide fxShow.gt-md> -->
+
+        <!--<div fxLayout="row wrap" class="info-bar" ngClass.gt-md="m-0">-->
+            <!--<div fxFlex="100" fxFlex.md="25" fxFlex.sm="50">-->
+                <!--<mat-card class="light-block" fxLayout="row"  fxLayoutAlign="start center">-->
+                    <!--<mat-icon class="mat-icon-xlg text-muted m-0">card_giftcard</mat-icon>-->
+                    <!--<div class="content">-->
+                        <!--<p>BONUS PLUS</p> -->
+                        <!--<span class="text-muted m-0">Make fun of shopping and collect bonuses</span>-->
+                    <!--</div> -->
+                <!--</mat-card> -->
+            <!--</div>-->
+            <!--<div fxFlex="100" fxFlex.md="25" fxFlex.sm="50" class="mt-16"> -->
+                <!--<mat-card class="light-block" fxLayout="row"  fxLayoutAlign="start center">-->
+                    <!--<mat-icon class="mat-icon-xlg text-muted m-0">local_shipping</mat-icon>-->
+                    <!--<div class="content">-->
+                        <!--<p>FREE SHIPPING</p> -->
+                        <!--<span class="text-muted m-0">Free shipping on all orders over $99</span>-->
+                    <!--</div> -->
+                <!--</mat-card>-->
+            <!--</div>-->
+            <!--<div fxFlex="100" fxFlex.md="25"fxFlex.sm="50" class="mt-16"> -->
+                <!--<mat-card class="light-block" fxLayout="row"  fxLayoutAlign="start center">-->
+                    <!--<mat-icon class="mat-icon-xlg text-muted m-0">monetization_on</mat-icon>-->
+                    <!--<div class="content">-->
+                        <!--<p>MONEY BACK GUARANTEE</p> -->
+                        <!--<span class="text-muted m-0">30 Days money return guarantee</span>-->
+                    <!--</div> -->
+                <!--</mat-card>-->
+            <!--</div>-->
+            <!--<div fxFlex="100" fxFlex.md="25" fxFlex.sm="50" class="mt-16"> -->
+                <!--<mat-card class="light-block" fxLayout="row"  fxLayoutAlign="start center">-->
+                    <!--<mat-icon class="mat-icon-xlg text-muted m-0">history</mat-icon>-->
+                    <!--<div class="content">-->
+                        <!--<p>ONLINE SUPPORT 24/7</p> -->
+                        <!--<span class="text-muted m-0">Call us: (+100) 123 456 7890</span>-->
+                    <!--</div> -->
+                <!--</mat-card>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+</div>
+
+<div fxLayout="row wrap" class="mt-2">
+    <div fxFlex="100" fxFlex.gt-md="100" fxFlex.md="100">
+        <mat-card>
+            <mat-tab-group [@.disabled]="true" [selectedIndex]="0">
+                <mat-tab label="描述">
+                    <div class="full-desc lh">
+                        <p>{{product?.longDesc}}</p>
+                        <img *ngIf="product?.picture" [src]="product?.picture" style="width: 100%;height: 100%"/>
+                    </div>
+                </mat-tab>
+                <mat-tab label="供应商信息">
+                    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="details text-muted py-1">
+                        <div class="color">
+                            <span class="fw-500">供应商名称:</span>&nbsp;&nbsp;&nbsp;{{vendorINfo?.name}}
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="details text-muted py-1">
+                        <div class="color">
+                            <span class="fw-500">电话:</span>&nbsp;&nbsp;&nbsp;{{vendorINfo?.phone}}
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="details text-muted py-1">
+                        <div class="color">
+                            <span class="fw-500">邮箱:</span>&nbsp;&nbsp;&nbsp;{{vendorINfo?.email}}
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="details text-muted py-1">
+                        <div class="color">
+                            <span class="fw-500">网站:</span>&nbsp;&nbsp;&nbsp;{{vendorINfo?.url}}
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+    </div>
+    <!--<div fxFlex="100" fxFlex.gt-md="22" fxFlex.md="26" ngClass.gt-sm="pl-3" fxHide fxShow.gt-sm>-->
+        <!--<img src="https://via.placeholder.com/400x320/EEEEEE/9E9E9E/?text=Banner%201" alt="" class="mw-100 d-block">-->
+        <!--<img src="https://via.placeholder.com/400x320/EEEEEE/9E9E9E/?text=Banner%202" alt="" class="mw-100 d-block mt-3">-->
+        <!--<img src="https://via.placeholder.com/400x320/EEEEEE/9E9E9E/?text=Banner%203" alt="" class="mw-100 d-block mt-3">-->
+    <!--</div>-->
+</div>
+
+<!--<div class="py-2 mt-2">-->
+    <!--<h2>Related Products</h2>-->
+    <!--<div class="divider"></div>-->
+    <!--<app-products-carousel [products]="relatedProducts"></app-products-carousel>-->
+<!--</div>-->
+
+
