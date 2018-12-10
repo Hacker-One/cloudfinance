@@ -1,0 +1,64 @@
+
+node {
+    currentBuild.result = "SUCCESS"
+    name_list = "$JOB_NAME".split('/')
+    def tag       = name_list[1]
+    def project   = name_list[0]
+    def slug_dir  = "/tmp/'${ project }'"
+    def slug_file = "'${ slug_dir }'/slug.tgz"
+    def mvnHome   = tool 'maven_3_5_4'
+    
+    def tag_map = ["master": "latest", "release": "stable"]
+    if(tag_map.containsKey(tag)){
+        tag = tag_map.get(tag)
+    }
+    
+    try {
+
+
+         
+        stage('Check out') { 
+            checkout scm     
+        }
+
+
+        
+        stage('Build') {
+            
+            withEnv(["PATH+MAVEN=${ mvnHome }/bin"]) {
+                sh "mvn clean package"        //执行mvn命令
+            }
+            
+        }
+
+
+        
+        stage('Docker build') {
+            
+            sh("mkdir -p '${ slug_dir }'")
+            sh("tar -z --exclude='.git' --exclude='src' -cf '${ slug_file }' .")
+            sh("mv '${ slug_file }' /tmp/'${ project }'.tgz")
+            sh("chmod +x ./script/docker-build.sh")
+            sh("./script/docker-build.sh '${ project }' $tag")    //执行script脚本，build image并上传仓库
+            
+        }
+
+
+        
+        stage('Cleanup') {
+         
+            withEnv(["PATH+MAVEN=${ mvnHome }/bin"]) {
+                sh "mvn -Dmaven.test.failure.ignore clean package"
+                sh "rm -rf '${ slug_dir }'"
+            }
+    
+        }
+
+
+    } catch (err) {
+        
+        currentBuild.result = "FAILURE"
+        throw err
+    }
+}
+
