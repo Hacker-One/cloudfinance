@@ -1,0 +1,1 @@
+web: cd target/paas && ./init.sh && ./start.sh endpoint.conf
