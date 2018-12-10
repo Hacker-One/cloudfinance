@@ -1,0 +1,1067 @@
+{
+	"info": {
+		"_postman_id": "a8431755-ef02-46aa-8d0b-c91a81a2ceb7",
+		"name": "market Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "新增account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Qloud-Token",
+						"value": "dwerwerewrewrewrewrewfDSFds"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"ABC\",\n\t\"name\":\"ABC\",\n\t\"contact\":\"123456\",\n\t\"email\":\"123456@139.com\",\n\t\"pwd\":\"\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/accounts",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增account Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Qloud-Token",
+						"value": "dwerwerewrewrewrewrewfDSFds"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"ABC\",\n\t\"name\":\"ABC\",\n\t\"contact\":\"123456\",\n\t\"email\":\"123456@139.com\",\n\t\"pwd\":\"\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/accounts",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "127.0.0.1:8090/accounts/10001",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"accounts",
+						"10001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增一个供应商",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"testVendor\",\n\t\"hook\":\"192.168.10.131\",\n\t\"contact\":\"1234567\",\n\t\"email\":\"1234567@139.com\",\n\t\"url\":\"www.testvendor.com\",\n\t\"disply.name\":\"displayVen22\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8090/vendors",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"vendors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询一个vendor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "127.0.0.1:8090/vendors/3",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"vendors",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增一个商品",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"type\":\"1\",\n\t\"category\":\"1\",\n\t\"name\":\"qloudservice-conductor\",\n\t\"shortdesc\":\"qloudservice-conductor\",\n\t\"icon\":\"http://static.qloudmart.com:30024/images/icon/qloudsso.jpg\",\n\t\"longdesc\":\"qloudSSO 's description\",\n\t\"picture\":\"s\",\n\t\"url\":\"http://qloudsso.io\",\n\t\"vendor\":\"1\"\n}"
+				},
+				"url": {
+					"raw": "49.4.93.173:32090/products",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32090",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "根据ID查询一个商品",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ":32090/products/571828364302618624",
+					"host": [
+						""
+					],
+					"port": "32090",
+					"path": [
+						"products",
+						"571828364302618624"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新一个产品",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"type\":\"1\",\n\t\"category\":\"1\",\n\t\"name\":\"testUpdate\",\n\t\"shortdesc\":\"a short describeupdate\",\n\t\"icon\":\"/dsa/image/pro.png\",\n\t\"longdesc\":\"a long desc\",\n\t\"picture\":\"http://www.baidu.com\",\n\t\"url\":\"http://www.baidu.com\",\n\t\"vendor\":\"1\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8090/products/570086753977765888",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"570086753977765888"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "多笔查询一个product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n   \"start\":\"0\",\n   \"count\":\"12\",\n   \"name\":\"t\"\n \n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8090/products/list",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "逻辑删除一个商品",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "127.0.0.1:8090/products/570086753977765888",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"570086753977765888"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "给某个商品新增一个tag",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"1.0.0\"\n}"
+				},
+				"url": {
+					"raw": "49.4.93.173:32090/products/571826561171329024/tags",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32090",
+					"path": [
+						"products",
+						"571826561171329024",
+						"tags"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询某一个商品的tag",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "127.0.0.1:8090/products/570091407633551360/tags",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"570091407633551360",
+						"tags"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新一个tag",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"1.0.3\",\n\t\"id\":\"1\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8090/products/570091407633551360/tags",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"570091407633551360",
+						"tags"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除一个商品tag",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "127.0.0.1:8090/products/570091407633551360/tags/1.0.3",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"570091407633551360",
+						"tags",
+						"1.0.3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增license",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"product\":\"570091407633551360\",\n\t\"account\":\"10001\",\n\t\"expiration.date\":\"20501231\",\n\t\"content\":\"dsadgshjgdwuehjhjgdjsadja\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8090/licenses",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"licenses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询license",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "49.4.93.173:32090/licenses?product=571828364302618624&account=10001",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32090",
+					"path": [
+						"licenses"
+					],
+					"query": [
+						{
+							"key": "product",
+							"value": "571828364302618624"
+						},
+						{
+							"key": "account",
+							"value": "10001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增订单",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"product\":\"571828364302618630\",\n\t\"account\":\"10001\",\n\t\"pcode\":\"hdjksahdksahdjksdlhfjidsfhklasfkdshjis\",\n\t\"productName\":\"gerrit\",\n\t\"orderType\":\"try\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8090/orders",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询订单",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://49.4.93.173:32090/orders/f1809a66-1486-4b21-b4dc-ae55d72f65c9",
+					"protocol": "http",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32090",
+					"path": [
+						"orders",
+						"f1809a66-1486-4b21-b4dc-ae55d72f65c9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增用户",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"account\":\"MYCMB\",\n\t\"name\":\"POC\",\n\t\"id\":\"POC\",\n\t\"pwd\":\"poc123456\"\n}"
+				},
+				"url": {
+					"raw": "http://mart.csftgroup.com:30651/users",
+					"protocol": "http",
+					"host": [
+						"mart",
+						"csftgroup",
+						"com"
+					],
+					"port": "30651",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增artifact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"type\":\"1\",\n   \"name\":\"qloudid/cas\",\n   \"url\":\"qloudid/cas\"\n}"
+				},
+				"url": {
+					"raw": "49.4.93.173:32090/products/571828364302618624/artifacts",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32090",
+					"path": [
+						"products",
+						"571828364302618624",
+						"artifacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改artifact",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"3\",\n   \"type\":\"1\",\n   \"name\":\"granfana:1.14.0\",\n   \"url\":\"dsdadsa/dsadsadsads\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8090/products/570091407633551360/artifacts",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"570091407633551360",
+						"artifacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询artifact",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://192.168.1.145:32090/products/571828364302618624/artifacts",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"145"
+					],
+					"port": "32090",
+					"path": [
+						"products",
+						"571828364302618624",
+						"artifacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询某个账户是否有权限访问某个artifact",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "49.4.93.173:32090/artifacts?accountid=10001&type=docker&path=qlouddop/jenkins",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32090",
+					"path": [
+						"artifacts"
+					],
+					"query": [
+						{
+							"key": "accountid",
+							"value": "10001"
+						},
+						{
+							"key": "type",
+							"value": "docker"
+						},
+						{
+							"key": "path",
+							"value": "qlouddop/jenkins"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "根据用户ID查询account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "49.4.93.173:32090/users/chenxiaoji/accounts",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32090",
+					"path": [
+						"users",
+						"chenxiaoji",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "登录挡板",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"loginName\":\"chenxiaoji\",\n\t\"pwd\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "49.4.93.173:32090/login",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32090",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询商品类型",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "www.qloudmart.com:30651/products/types",
+					"host": [
+						"www",
+						"qloudmart",
+						"com"
+					],
+					"port": "30651",
+					"path": [
+						"products",
+						"types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询category 列表",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "49.4.93.173:32090/products/categorys",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32090",
+					"path": [
+						"products",
+						"categorys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vendor 挡板",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pcode\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "49.4.93.173:32100/purchase",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32100",
+					"path": [
+						"purchase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询订单列表",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "49.4.93.173:32090/orders?accountId=10001&start=0&count=100",
+					"host": [
+						"49",
+						"4",
+						"93",
+						"173"
+					],
+					"port": "32090",
+					"path": [
+						"orders"
+					],
+					"query": [
+						{
+							"key": "accountId",
+							"value": "10001"
+						},
+						{
+							"key": "start",
+							"value": "0"
+						},
+						{
+							"key": "count",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增一个商品的图片",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"url\":\"http://static.qloudmart.com/images/icon/dop.jpg\",\n\t\"sort\":\"1\"\n}"
+				},
+				"url": {
+					"raw": "192.168.1.145:32090/products/571828364302618624/pictures/",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"145"
+					],
+					"port": "32090",
+					"path": [
+						"products",
+						"571828364302618624",
+						"pictures",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新某一个商品的图片",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"2\",\n\t\"url\":\"http://f.hiphotos.baidu.com/image/pic/item/f603918fa0ec08faf4f358d454ee3d6d54fbdad6.jpg\",\n\t\"sort\":\"2\"\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:8090/products/570087251308974080/pictures/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"570087251308974080",
+						"pictures",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除一个商品的图片",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "127.0.0.1:8090/products/570087251308974080/pictures/2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"570087251308974080",
+						"pictures",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "下载一个chart",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "127.0.0.1:8090/artifacts/charts?accountid=10001&type=chart&path=grafana-1.14.0.tgz",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8090",
+					"path": [
+						"artifacts",
+						"charts"
+					],
+					"query": [
+						{
+							"key": "accountid",
+							"value": "10001"
+						},
+						{
+							"key": "type",
+							"value": "chart"
+						},
+						{
+							"key": "path",
+							"value": "grafana-1.14.0.tgz"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.145:32090/orders/1cf62927-13db-4671-b80b-d1822adf85bc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://192.168.1.145:32090/orders/1cf62927-13db-4671-b80b-d1822adf85bc",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"145"
+					],
+					"port": "32090",
+					"path": [
+						"orders",
+						"1cf62927-13db-4671-b80b-d1822adf85bc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "www.qloudmart.com:30651/products/571826561171329024",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "www.qloudmart.com:30651/products/571826561171329024",
+					"host": [
+						"www",
+						"qloudmart",
+						"com"
+					],
+					"port": "30651",
+					"path": [
+						"products",
+						"571826561171329024"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "192.168.1.145:32090/accounts/10001/products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "192.168.1.145:32090/accounts/10001/products",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"145"
+					],
+					"port": "32090",
+					"path": [
+						"accounts",
+						"10001",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.145:30578/authc/jwt",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Qloud-Token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ7XCJuYW1lXCI6bnVsbCxcImlkXCI6XCJoYWlzaGVuZ1wiLFwiYXBwbGljYXRpb25JZFwiOlwiNGNiYTM5ZDUtZjZiMC0xMWU4LWI3YzgtZjJmNTE0MGFlZDEzXCIsXCJ1dWlkXCI6XCJiOGVlZjA3OC1mNmNmLTExZTgtYjdjOC1mMmY1MTQwYWVkMTNcIn0iLCJhdWQiOiJodHRwczpcL1wvcWxvdWRiaXQuY29tIiwibmJmIjoxNTQzODMxNjQ0LCJpc3MiOiJxbG91ZGJpdCIsImV4cCI6MTU0NDQzNjQ0NCwiaWF0IjoxNTQzODMxNjQ0LCJqdGkiOiJhOWNkYzVjOC0zODgzLTQwNmUtYTFmMi04ZTMyNjYzMmRkMDkifQ.FO94UOul8Geb81xOrJgW7u-83EyN5MFfgwKKAclSULycgNfScJSF-EaQXoAa2SmG8wGGYlcS6NZmOJe3OQF8TlVfAP8kxy3f5kR65dfb-kjLAVhtX2RzuTR1Q0uqpaYuC2XE05zSmyfyUPohXbuBCYDV2qpaLVU2gSEnbNSeXQr2q3mUVSUWRjbqc_sGOebkcbLe72BnkAWuB5h5qSfb_f97xMH24D8y9fkcxnuT2NFBaDelSZ02zWhvk08jOANkMwgg0lXv9DtML_E7asvCQeWejbb5DdxPhYadNJb8difW9QkvjQQSPk4cPOL3XzdmJX6ATGkrtytLo1jfdHXWFw"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://192.168.1.145:30578/authc/jwt",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"145"
+					],
+					"port": "30578",
+					"path": [
+						"authc",
+						"jwt"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

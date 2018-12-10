@@ -1,0 +1,728 @@
+{
+	"info": {
+		"_postman_id": "c690d185-669c-45ca-a0cd-a160fff82e8a",
+		"name": "rancherInterface",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "启动一个chart 应用",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0."
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "63788f94d8"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=admin; CSRF=63788f94d8; R_SESS=token-kh5td:rqn4wgmwsj6mzbb4f524vd5ptghx5x8sz5pkmp9cxj26w68m8kfsr2"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"prune\": false,\r\n\t\"type\": \"app\",\r\n\t\"name\": \"jenkins\",\r\n\t\"answers\": {},\r\n\t\"targetNamespace\": \"default\",\r\n\r\n\t\"projectId\": \"c-zmf9g:p-w4ffd\"\r\n}"
+				},
+				"url": {
+					"raw": "https://192.168.1.11/v3/projects/c-zmf9g:p-w4ffd/app",
+					"protocol": "https",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"11"
+					],
+					"path": [
+						"v3",
+						"projects",
+						"c-zmf9g:p-w4ffd",
+						"app"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "创建一个命名空间",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "169e8698f8"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=chenxiaoji; CSRF=169e8698f8; R_SESS=token-8sv4t:4xxbt5m2f54fcnqbxzx2lsxhgvnx7bpzr2qzz68hzksklgwp9r7q8c"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"type\": \"namespace\",\r\n\t\"name\": \"qloud-dop\",\r\n\t\"projectId\": \"c-sn6rv:p-njh56\"\r\n}"
+				},
+				"url": {
+					"raw": "https://192.168.1.164/v3/clusters/c-sn6rv/namespace",
+					"protocol": "https",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"164"
+					],
+					"path": [
+						"v3",
+						"clusters",
+						"c-sn6rv",
+						"namespace"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询一个chart 是否存在",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "63788f94d8"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=admin; CSRF=63788f94d8; R_SESS=token-kh5td:rqn4wgmwsj6mzbb4f524vd5ptghx5x8sz5pkmp9cxj26w68m8kfsr2"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://192.168.1.11/v3/catalogs?action=refresh",
+					"protocol": "https",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"11"
+					],
+					"path": [
+						"v3",
+						"catalogs"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "refresh"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询rancher列表",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "169e8698f8"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=chenxiaoji; CSRF=169e8698f8; R_SESS=token-8sv4t:4xxbt5m2f54fcnqbxzx2lsxhgvnx7bpzr2qzz68hzksklgwp9r7q8c"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://192.168.1.164/v3/templateVersions",
+					"protocol": "https",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"164"
+					],
+					"path": [
+						"v3",
+						"templateVersions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询列表",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "8e852d0359"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=chenxiaoji; CSRF=8e852d0359; R_SESS=token-r7j2k:s7qmhtjtcr86js2wnfbf6vs8fq8fcnnktntw78b6rd77zhlcbqzkv9"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://114.116.53.194:8443/v3/templateVersions",
+					"protocol": "https",
+					"host": [
+						"114",
+						"116",
+						"53",
+						"194"
+					],
+					"port": "8443",
+					"path": [
+						"v3",
+						"templateVersions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询项目下运行的应用",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "8e852d0359"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=chenxiaoji; CSRF=8e852d0359; R_SESS=token-r7j2k:s7qmhtjtcr86js2wnfbf6vs8fq8fcnnktntw78b6rd77zhlcbqzkv9"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://114.116.53.194:8443/v3/project/c-4ttws:p-ghqb4/apps/",
+					"protocol": "https",
+					"host": [
+						"114",
+						"116",
+						"53",
+						"194"
+					],
+					"port": "8443",
+					"path": [
+						"v3",
+						"project",
+						"c-4ttws:p-ghqb4",
+						"apps",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取定义的project 信息",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0."
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "8e852d0359"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=chenxiaoji; CSRF=8e852d0359; R_SESS=token-r7j2k:s7qmhtjtcr86js2wnfbf6vs8fq8fcnnktntw78b6rd77zhlcbqzkv9"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://114.116.53.194:8443/v3/projects",
+					"protocol": "https",
+					"host": [
+						"114",
+						"116",
+						"53",
+						"194"
+					],
+					"port": "8443",
+					"path": [
+						"v3",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除一个命名空间",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://114.116.53.194:8443/v3/clusters/c-4ttws/namespace",
+					"protocol": "https",
+					"host": [
+						"114",
+						"116",
+						"53",
+						"194"
+					],
+					"port": "8443",
+					"path": [
+						"v3",
+						"clusters",
+						"c-4ttws",
+						"namespace"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://114.116.53.194:8443/v3/catalogs/destmart",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0."
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "8e852d0359"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=chenxiaoji; CSRF=8e852d0359; R_SESS=token-r7j2k:s7qmhtjtcr86js2wnfbf6vs8fq8fcnnktntw78b6rd77zhlcbqzkv9"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://114.116.53.194:8443/v3/catalogs/destmart",
+					"protocol": "https",
+					"host": [
+						"114",
+						"116",
+						"53",
+						"194"
+					],
+					"port": "8443",
+					"path": [
+						"v3",
+						"catalogs",
+						"destmart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "测试下单",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " { \r\n \"payment_address1\":\"192.168.11.22\",\r\n \"user_token\":\"JaN6FkvRri7f9FYOYHqkzHzza95xtLkJ\",\r\n \"customer_id\":\"1\",\r\n \"order_id\":\"53\",\r\n \"user_id\":\"1\",\r\n \"products\":[{\"product_type\":\"20\", \"product_id\":\"50\"}]\r\n }"
+				},
+				"url": {
+					"raw": "localhost:8090/purchaseService/purchaseTest",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"purchaseService",
+						"purchaseTest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刷新rancher应用商店列表",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": ""
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://192.168.1.11/v3/catalogs?action=refresh",
+					"protocol": "https",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"11"
+					],
+					"path": [
+						"v3",
+						"catalogs"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "refresh"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询应用商店列表",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "8e852d0359"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=chenxiaoji; CSRF=8e852d0359; R_SESS=token-r7j2k:s7qmhtjtcr86js2wnfbf6vs8fq8fcnnktntw78b6rd77zhlcbqzkv9"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://114.116.53.194:8443/v3/templates?category_ne=system&rancherVersion=v2.0.8",
+					"protocol": "https",
+					"host": [
+						"114",
+						"116",
+						"53",
+						"194"
+					],
+					"port": "8443",
+					"path": [
+						"v3",
+						"templates"
+					],
+					"query": [
+						{
+							"key": "category_ne",
+							"value": "system"
+						},
+						{
+							"key": "rancherVersion",
+							"value": "v2.0.8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://114.116.53.194:8443/v3/templateVersions/dest-market-grafana-1.14.0?rancherVersion=v2.0.6",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "8e852d0359"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=chenxiaoji; CSRF=8e852d0359; R_SESS=token-r7j2k:s7qmhtjtcr86js2wnfbf6vs8fq8fcnnktntw78b6rd77zhlcbqzkv9"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://114.116.53.194:8443/v3/templateVersions/dest-market-grafana-1.14.0?rancherVersion=v2.0.6",
+					"protocol": "https",
+					"host": [
+						"114",
+						"116",
+						"53",
+						"194"
+					],
+					"port": "8443",
+					"path": [
+						"v3",
+						"templateVersions",
+						"dest-market-grafana-1.14.0"
+					],
+					"query": [
+						{
+							"key": "rancherVersion",
+							"value": "v2.0.6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://192.168.1.164/v3/templateVersions/chartrepo-gerrit-1.0.1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.5"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-action-links",
+						"value": "actionLinks"
+					},
+					{
+						"key": "x-api-no-challenge",
+						"value": "true"
+					},
+					{
+						"key": "x-api-csrf",
+						"value": "169e8698f8"
+					},
+					{
+						"key": "Cookie",
+						"value": "R_USERNAME=chenxiaoji; CSRF=169e8698f8; R_SESS=token-8sv4t:4xxbt5m2f54fcnqbxzx2lsxhgvnx7bpzr2qzz68hzksklgwp9r7q8c"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://192.168.1.164/v3/templateVersions/chartrepo-gerrit-1.0.1",
+					"protocol": "https",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"164"
+					],
+					"path": [
+						"v3",
+						"templateVersions",
+						"chartrepo-gerrit-1.0.1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.145:32090/products/list",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \n   \"start\":\"0\",\n   \"count\":\"12\",\n   \"name\":\"t\"\n \n}"
+				},
+				"url": {
+					"raw": "http://192.168.1.145:32090/products/list",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"145"
+					],
+					"port": "32090",
+					"path": [
+						"products",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://registry.qloudmart.com:5001/v2/qloud/qloudapi/manifests/4.0.0",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJBWVE6TVRYSzpWQzQzOjRCVzU6Nk9PUjpWSkZVOlpKVkM6V1NHWjpaR1FMOlVJVFY6N0dTUDpNSUY3In0.eyJpc3MiOiJBdXRoIFNlcnZpY2UiLCJzdWIiOiJjaGVueGlhb2ppIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNTQyMDEzMTQ3LCJuYmYiOjE1NDIwMTIyMzcsImlhdCI6MTU0MjAxMjI0NywianRpIjoiNDI4OTg4ODE3NzEyODA5MTQyMiIsImFjY2VzcyI6W3sidHlwZSI6InJlcG9zaXRvcnkiLCJuYW1lIjoicWxvdWQvcWxvdWRhcGkiLCJhY3Rpb25zIjpbInB1bGwiXX1dfQ.VsvzIjkHNHNkX2qiyM2cXG71FUG4sVdUBTDFoE19ksVeHA_lBJ9MM54gS3G3z58JhHIHFYaNWonmMcRpfzWeLpCESQAQSnogrI_RriamVCafyd-sKhm_5RpbhJJNCKl9q0xAhmJhPlTiBn_k_9CIA_7hZ9jV89hzAz_JNRa3XsyFLlvs7TMBs22lRqBobT-7r1OhUBVJtMul7XfgodTgv7_Pj8NSTfrAzLbP6Afbd2765zObGEK2o28dQSYftaOAl82HRpwWZH0mLrFMDiGf3NKT8cTH0skTp5Pw855sjf1npcIWsnhg2WNvmfhltM-TXf6ZIzmVQAkH3ZAq4X96Yg"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://registry.csftgroup.com:5000/v2/qloud/qloudgrid/blobs/sha256:183908219c8dcd4bb9575f7bf\ndef28f0c3c9cea66d3f77f547406d8370fa7d2c",
+					"protocol": "https",
+					"host": [
+						"registry",
+						"csftgroup",
+						"com"
+					],
+					"port": "5000",
+					"path": [
+						"def28f0c3c9cea66d3f77f547406d8370fa7d2c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

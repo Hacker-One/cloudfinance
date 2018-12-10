@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "9126f184-9151-44d6-a0bf-3d0b812f5756",
+		"name": "chartmuseum",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "查询chartmuseum 列表",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://192.168.1.175:30001/api/charts",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"175"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"charts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "删除某个chartmuseum下的chart",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "http://192.168.1.11:8080/api/charts/qloudtest-ui/1.0.0",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"11"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"charts",
+						"qloudtest-ui",
+						"1.0.0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://114.116.22.135:8989/api/charts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "http://192.168.1.175:30001/api/charts",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"175"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"charts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.175:30001/api/charts",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "http://192.168.1.232:8888/api/charts/sso/1.0.1",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"232"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"charts",
+						"sso",
+						"1.0.1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.175:30001/api/charts/gerrit/1.0.0",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "http://192.168.1.175:30001/api/charts",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"175"
+					],
+					"port": "30001",
+					"path": [
+						"api",
+						"charts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,866 @@
+{
+	"info": {
+		"_postman_id": "c48238b6-3bc8-40c7-b0d0-001924971374",
+		"name": "registry",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "查询registry一个image 的tag列表",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://114.116.22.135:5000/v2/busybox/tags/list",
+					"protocol": "http",
+					"host": [
+						"114",
+						"116",
+						"22",
+						"135"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"busybox",
+						"tags",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询registry 镜像列表",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://192.168.1.232:5000/v2/_catalog",
+					"protocol": "https",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"232"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"_catalog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询一个镜像下tag的manifest",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJBWVE6TVRYSzpWQzQzOjRCVzU6Nk9PUjpWSkZVOlpKVkM6V1NHWjpaR1FMOlVJVFY6N0dTUDpNSUY3In0.eyJpc3MiOiJBdXRoIFNlcnZpY2UiLCJzdWIiOiJQT0MiLCJhdWQiOiJEb2NrZXIgcmVnaXN0cnkiLCJleHAiOjE1NDI3MDk3NjEsIm5iZiI6MTU0MjcwODg1MSwiaWF0IjoxNTQyNzA4ODYxLCJqdGkiOiI2ODE4MTkyNzAxNDUxNjg4ODEiLCJhY2Nlc3MiOlt7InR5cGUiOiJyZXBvc2l0b3J5IiwibmFtZSI6InJlZ2lzdHJ5LnFsb3VkbWFydC5jb206NTAwMC9xbG91ZGRvcC9nZXJyaXQiLCJhY3Rpb25zIjpbXX1dfQ.PJ4z3H_T1zaUso-qacJ78oPNix5aAtoanzItQ3WADQV0-Ft2mYigT6Q85V9VIIHuDzXPaPnAflcq7ISXCMNmQj3DLQiId8IrYqosFzFVfs0-J4rZXJc5Ilq0dNG6jdr1JNnf3iXjfSpUKQ6PyKDYqh-N04sMZvwvbHAh0zQ1cmO4KbQ8pATTMneQbKeyklbufUSWOKTE2JD2a8duKXY552Mc19ra_HsTu4azWiWkSr5_iVF-13RoxW3DSiJgR1Ol7IVbVTgVOqNppv0wCtU3XYgc_QQP138AG67UQBZQ2ZewaGrpAFlQCnmPI8qnvY9V_f12bdcyYqegJQ6NogkjRQ"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://registry.csftgroup.com:5000/v2/girret/manifests/2.15.3",
+					"protocol": "https",
+					"host": [
+						"registry",
+						"csftgroup",
+						"com"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"girret",
+						"manifests",
+						"2.15.3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://registry.qloudmart.com:5000/v2/_catalog",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IkFMTkQ6TzRQTDpDUUpNOlgyTUk6SUFZNTpQN0VLOjJWVzY6VlRRVTo0QUVTOkdUSUw6RjU3NTpKMlY1In0.eyJpc3MiOiJBdXRoIFNlcnZpY2UiLCJzdWIiOiJjaGVueGlhb2ppIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNTQwMzY0Mjk0LCJuYmYiOjE1NDAzNjMzODQsImlhdCI6MTU0MDM2MzM5NCwianRpIjoiNTAyNzE4NTE5ODUxNTcyMDIxMCIsImFjY2VzcyI6W3sidHlwZSI6InJlcG9zaXRvcnkiLCJuYW1lIjoicWxvdWRkb3AvamVua2lucyIsImFjdGlvbnMiOlsicHVsbCJdfV19.HXVkVyXrHWGqdYrHcd6hX54qWckOD1-5hN9_iMhHKoZ3DhG5_g2VB_cNSmkFLjEmnWzdgdqSWS73jlNJoEblOpo4AvQlfbEbHQbgXpFBA3bhAM7AXa8bghfAaWiImfcFvFrV6d4Q4o66X03Nr0E1gDPk4pIJ5EEQervmc2DiLqCdWTlA4a-4tKbDSqzRb5_vTG0eLv7AiMVTrAsLInNC45Dy-vxHoq0pbfUIrh4H6_opxsfur05ppCve0sDE1e3jQE8GQWJjxNZvDoF1HMSRSZIuuiEVzes8ulWjFppJktgVRMuKQuaUUNRElLo_Sco2Jjwi000QjnrZ25lfnOIhhw"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://registry.qloudmart.com:5000/v2/qlouddop/jenkins/manifests/2.60.3",
+					"protocol": "https",
+					"host": [
+						"registry",
+						"qloudmart",
+						"com"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"qlouddop",
+						"jenkins",
+						"manifests",
+						"2.60.3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://registry.qloudmart.com:5000/v2/_catalog Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IkFMTkQ6TzRQTDpDUUpNOlgyTUk6SUFZNTpQN0VLOjJWVzY6VlRRVTo0QUVTOkdUSUw6RjU3NTpKMlY1In0.eyJpc3MiOiJBdXRoIFNlcnZpY2UiLCJzdWIiOiJjaGVueGlhb2ppIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNTQwMzc5NzI0LCJuYmYiOjE1NDAzNzg4MTQsImlhdCI6MTU0MDM3ODgyNCwianRpIjoiMjY4NDIzNzcyNzE3NTY1Mjc2MyIsImFjY2VzcyI6W3sidHlwZSI6InJlcG9zaXRvcnkiLCJuYW1lIjoicWxvdWRkb3AvamVua2lucyIsImFjdGlvbnMiOlsicHVsbCJdfV19.bbS6EUsYilB6g9ChAOmIjDHEBjzTbBc2571ub7xlBIF0SHkbb8fCAzCN_DNQu34VDN6GbC8ul1b6Ov_tcIFoMLjneGihAwbJlQFDf7D0hfScqC4LwM7a-_NM5s7v1R_sfmcvHpQqiV3TuhBki8AWm72Pt0rkGsnE6TsQAIInsmotnG_cC4FtMZDipkXZLS3xgQbpJPNPxVhQmFHzgR4LGiOnGEoQ22klP5Oa3X3AXpCEsDq67L3jreXiYPjLrC-OpJulx8uvvQQzVH1fkfswtVUrZlsYBSuZPSQ8buDXtOZ6-lwj6QfqteKr2_Uhz-7F9NaFbgHamVYmERpukhvNRQ"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://registry.qloudmart.com:5000/v2/qlouddop/jenkins/manifests/2.60.3",
+					"protocol": "https",
+					"host": [
+						"registry",
+						"qloudmart",
+						"com"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"qlouddop",
+						"jenkins",
+						"manifests",
+						"2.60.3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://registry.qloudmart.com:5001/auth?service=Docker registry&scope=repository:samalba/my-app:pull,push",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bd0610cd-110c-43e8-92f6-0b2dc1780af4",
+						"type": "text/javascript",
+						"exec": [
+							"{",
+							"    ",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "chenxiaoji",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "password",
+							"value": "123456",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						},
+						{
+							"key": "service",
+							"value": "Docker registry",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "haisheng",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "access_type",
+							"value": "offline",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "client_id",
+							"value": "dockerengine",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://registry.qloudmart.com:5001/auth?service=Docker registry&scope=repository:qlouddop/jenkins:pull&grant_type=refresh_token&access_type=offline&client_id=postman",
+					"protocol": "https",
+					"host": [
+						"registry",
+						"qloudmart",
+						"com"
+					],
+					"port": "5001",
+					"path": [
+						"auth"
+					],
+					"query": [
+						{
+							"key": "service",
+							"value": "Docker registry"
+						},
+						{
+							"key": "scope",
+							"value": "repository:qlouddop/jenkins:pull"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "access_type",
+							"value": "offline"
+						},
+						{
+							"key": "client_id",
+							"value": "postman"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://registry.qloudmart.com:5001/auth?service=Docker registry&scope=repository:samalba/my-app:pull,push Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bd0610cd-110c-43e8-92f6-0b2dc1780af4",
+						"type": "text/javascript",
+						"exec": [
+							"{",
+							"    ",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "password",
+							"value": "123456",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "service",
+							"value": "Docker registry",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "haisheng",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "access_type",
+							"value": "offline",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "dockerengine",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://registry.qloudmart.com:5001/auth?service=Docker registry&scope=repository:qlouddop/jenkins:pull&grant_type=refresh_token&refresh_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IkFMTkQ6TzRQTDpDUUpNOlgyTUk6SUFZNTpQN0VLOjJWVzY6VlRRVTo0QUVTOkdUSUw6RjU3NTpKMlY1In0.eyJpc3MiOiJBdXRoIFNlcnZpY2UiLCJzdWIiOiJjaGVueGlhb2ppIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNTQwMzYwNzE2LCJuYmYiOjE1NDAzNTk4MDYsImlhdCI6MTU0MDM1OTgxNiwianRpIjoiNDYyMzI4MjgzMjQzMzM2MTMxIiwiYWNjZXNzIjpbXX0.C8obLU9OB0DKFzo_OpxIhE6_rtncI3MUcIYFzWiOeUQzS2e-anIqtTmaRPF8uYNs1BYQpZ2yyGaf3XRNyID5qMWPByBTorBpeHc_zX9NTgnPstEXrLuqlYgkiGY5Ok-lmDjgUT9xouRMNMczfjLui8WCEcuqtCoUrQ7g26RJ-6SvrkuWeDnj-d9qisq7o0hqjF8hrFM-TUKeEttnGxBP59Wom8QRRrB7o3k7NelF4zyjqu9JFej5D-XMR0_CpYD6719cXkKi5xZRcktkzYui1uoAPw5I9A7qyJQfMccNtyNIl--K52uia7KlHT6kwCcgDaPLb7j7foY4-wPkMzAKjw&access_type=offline&client_id=postman",
+					"protocol": "https",
+					"host": [
+						"registry",
+						"qloudmart",
+						"com"
+					],
+					"port": "5001",
+					"path": [
+						"auth"
+					],
+					"query": [
+						{
+							"key": "service",
+							"value": "Docker registry"
+						},
+						{
+							"key": "scope",
+							"value": "repository:qlouddop/jenkins:pull"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "refresh_token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IkFMTkQ6TzRQTDpDUUpNOlgyTUk6SUFZNTpQN0VLOjJWVzY6VlRRVTo0QUVTOkdUSUw6RjU3NTpKMlY1In0.eyJpc3MiOiJBdXRoIFNlcnZpY2UiLCJzdWIiOiJjaGVueGlhb2ppIiwiYXVkIjoiRG9ja2VyIHJlZ2lzdHJ5IiwiZXhwIjoxNTQwMzYwNzE2LCJuYmYiOjE1NDAzNTk4MDYsImlhdCI6MTU0MDM1OTgxNiwianRpIjoiNDYyMzI4MjgzMjQzMzM2MTMxIiwiYWNjZXNzIjpbXX0.C8obLU9OB0DKFzo_OpxIhE6_rtncI3MUcIYFzWiOeUQzS2e-anIqtTmaRPF8uYNs1BYQpZ2yyGaf3XRNyID5qMWPByBTorBpeHc_zX9NTgnPstEXrLuqlYgkiGY5Ok-lmDjgUT9xouRMNMczfjLui8WCEcuqtCoUrQ7g26RJ-6SvrkuWeDnj-d9qisq7o0hqjF8hrFM-TUKeEttnGxBP59Wom8QRRrB7o3k7NelF4zyjqu9JFej5D-XMR0_CpYD6719cXkKi5xZRcktkzYui1uoAPw5I9A7qyJQfMccNtyNIl--K52uia7KlHT6kwCcgDaPLb7j7foY4-wPkMzAKjw"
+						},
+						{
+							"key": "access_type",
+							"value": "offline"
+						},
+						{
+							"key": "client_id",
+							"value": "postman"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://registry.qloudmart.com:5001/auth?service=Docker registry&grant_type=password&username=chenxiaoji&password=123456&client_id=postman&access_type=offline",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "Docker registry",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "postman",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "access_type",
+							"value": "offline",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "chenxiaoji",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://registry.qloudmart.com:5001/token",
+					"protocol": "https",
+					"host": [
+						"registry",
+						"qloudmart",
+						"com"
+					],
+					"port": "5001",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://registry.qloudmart.com:5001/auth?service=Docker registry&grant_type=password&username=chenxiaoji&password=123456&client_id=postman&access_type=offline Copy",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "chenxiaoji",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "Docker registry",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "postman",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "access_type",
+							"value": "offline",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "repository:qlouddop/jenkins:pull",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://registry.csftgroup.com:5001/auth",
+					"protocol": "https",
+					"host": [
+						"registry",
+						"csftgroup",
+						"com"
+					],
+					"port": "5001",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://registry.qloudmart.com:5001/auth?service=Docker registry&grant_type=password&username=chenxiaoji&password=123456&client_id=postman&access_type=offline Copy Copy",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "chenxiaoji",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "Docker registry",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "postman",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "access_type",
+							"value": "offline",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "repository:qlouddop/jenkins:pull",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://registry.csftgroup.com:5001/auth",
+					"protocol": "https",
+					"host": [
+						"registry",
+						"csftgroup",
+						"com"
+					],
+					"port": "5001",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://registry.qloudmart.com:5001/auth?service=Docker registry&grant_type=password&username=chenxiaoji&password=123456&client_id=postman&access_type=offline Copy Copy Copy",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "chenxiaoji",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "Docker registry",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "postman",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "access_type",
+							"value": "offline",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "repository:qlouddop/gerrit:pull",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://registry.csftgroup.com:5001/auth",
+					"protocol": "https",
+					"host": [
+						"registry",
+						"csftgroup",
+						"com"
+					],
+					"port": "5001",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.164:5000/v2/qloud/qloudapi/blobs/sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://192.168.1.164:5000/v2/qloud/qloudapi/blobs/sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"164"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"qloud",
+						"qloudapi",
+						"blobs",
+						"sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.164:5000/v2/qloud/qloudapi/blobs/sha256:a3f89d0a581efd0c31fa930a07e97ebc9750516bcd3222bad66b1766ef963a04",
+			"request": {
+				"method": "HEAD",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://192.168.1.164:5000/v2/qloud/qloudapi/blobs/sha256:a3f89d0a581efd0c31fa930a07e97ebc9750516bcd3222bad66b1766ef963a04",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"164"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"qloud",
+						"qloudapi",
+						"blobs",
+						"sha256:a3f89d0a581efd0c31fa930a07e97ebc9750516bcd3222bad66b1766ef963a04"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.164:5000/v2/qloud/qloudapi/blobs/uploads/473a4f5c-4bfb-4026-8af7-5510ac9d738f?_state=5OO-1_daEYKOIqz0zAKznhR1ZOliertF3yeNYdkdaDF7Ik5hbWUiOiJxbG91ZC9xbG91ZGFwaSIsIlVVSUQiOiI0NzNhNGY1Yy00YmZiLTQwMjYtOGFmNy01NTEwYWM5ZDczOGYiLCJPZmZzZXQiOjAsIlN0YXJ0ZWRBdCI6IjIwMTgtMTEtMTRUMDI6MjE6NDkuNzQzMjM3NTk4WiJ9?digest=sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Length",
+						"value": "32"
+					},
+					{
+						"key": "Content-Range",
+						"value": "0-31"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/octet-stream"
+					},
+					{
+						"key": "Connection",
+						"value": "Keep-Alive"
+					},
+					{
+						"key": "Charset",
+						"value": "UTF-8"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "http://192.168.1.164:5000/v2/qloud/qloudapi/blobs/uploads/473a4f5c-4bfb-4026-8af7-5510ac9d738f?_state=5OO-1_daEYKOIqz0zAKznhR1ZOliertF3yeNYdkdaDF7Ik5hbWUiOiJxbG91ZC9xbG91ZGFwaSIsIlVVSUQiOiI0NzNhNGY1Yy00YmZiLTQwMjYtOGFmNy01NTEwYWM5ZDczOGYiLCJPZmZzZXQiOjAsIlN0YXJ0ZWRBdCI6IjIwMTgtMTEtMTRUMDI6MjE6NDkuNzQzMjM3NTk4WiJ9?digest=sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"164"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"qloud",
+						"qloudapi",
+						"blobs",
+						"uploads",
+						"473a4f5c-4bfb-4026-8af7-5510ac9d738f"
+					],
+					"query": [
+						{
+							"key": "_state",
+							"value": "5OO-1_daEYKOIqz0zAKznhR1ZOliertF3yeNYdkdaDF7Ik5hbWUiOiJxbG91ZC9xbG91ZGFwaSIsIlVVSUQiOiI0NzNhNGY1Yy00YmZiLTQwMjYtOGFmNy01NTEwYWM5ZDczOGYiLCJPZmZzZXQiOjAsIlN0YXJ0ZWRBdCI6IjIwMTgtMTEtMTRUMDI6MjE6NDkuNzQzMjM3NTk4WiJ9?digest=sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.164:5000/v2/qloud/qloudapi/blobs/uploads/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://192.168.1.164:5000/v2/qloud/qloudapi/blobs/uploads/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"164"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"qloud",
+						"qloudapi",
+						"blobs",
+						"uploads",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.164:5000/v2/qloud/qloudapi/blobs/uploads/bac3a4bd-be18-47bc-a242-47d8a62ac2b1?_state=i8llgaFXlt6zyJTI6urw0LcKgBAwVP3oRCWRORPBLeF7Ik5hbWUiOiJxbG91ZC9xbG91ZGFwaSIsIlVVSUQiOiJiYWMzYTRiZC1iZTE4LTQ3YmMtYTI0Mi00N2Q4YTYyYWMyYjEiLCJPZmZzZXQiOjAsIlN0YXJ0ZWRBdCI6IjIwMTgtMTEtMTNUMTM6MTU6MjIuODU1MzI0NDA5WiJ9&digest=sha256:a3f89d0a581efd0c31fa930a07e97ebc9750516bcd3222bad66b1766ef963a04",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Length",
+						"value": "10"
+					},
+					{
+						"key": "Content-Range",
+						"value": "0-10"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/octet-stream"
+					},
+					{
+						"key": "x-http-method-override",
+						"value": "PATCH",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "http://192.168.1.164:5000/v2/qloud/qloudapi/blobs/uploads/bac3a4bd-be18-47bc-a242-47d8a62ac2b1?_state=i8llgaFXlt6zyJTI6urw0LcKgBAwVP3oRCWRORPBLeF7Ik5hbWUiOiJxbG91ZC9xbG91ZGFwaSIsIlVVSUQiOiJiYWMzYTRiZC1iZTE4LTQ3YmMtYTI0Mi00N2Q4YTYyYWMyYjEiLCJPZmZzZXQiOjAsIlN0YXJ0ZWRBdCI6IjIwMTgtMTEtMTNUMTM6MTU6MjIuODU1MzI0NDA5WiJ9&digest=sha256:a3f89d0a581efd0c31fa930a07e97ebc9750516bcd3222bad66b1766ef963a04",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"164"
+					],
+					"port": "5000",
+					"path": [
+						"v2",
+						"qloud",
+						"qloudapi",
+						"blobs",
+						"uploads",
+						"bac3a4bd-be18-47bc-a242-47d8a62ac2b1"
+					],
+					"query": [
+						{
+							"key": "_state",
+							"value": "i8llgaFXlt6zyJTI6urw0LcKgBAwVP3oRCWRORPBLeF7Ik5hbWUiOiJxbG91ZC9xbG91ZGFwaSIsIlVVSUQiOiJiYWMzYTRiZC1iZTE4LTQ3YmMtYTI0Mi00N2Q4YTYyYWMyYjEiLCJPZmZzZXQiOjAsIlN0YXJ0ZWRBdCI6IjIwMTgtMTEtMTNUMTM6MTU6MjIuODU1MzI0NDA5WiJ9"
+						},
+						{
+							"key": "digest",
+							"value": "sha256:a3f89d0a581efd0c31fa930a07e97ebc9750516bcd3222bad66b1766ef963a04"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

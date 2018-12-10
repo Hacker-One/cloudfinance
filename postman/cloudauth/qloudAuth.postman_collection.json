@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "90ab7943-50e6-41c7-9fae-78b3711eeeba",
+		"name": "qloudAuth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": " http://192.168.1.145:32528/kbaas/auth/token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "0ff6322f-0510-4103-86cb-1a8582548ea3"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\":\"haisheng\",\n\t\"password\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://192.168.1.145:32528/kbaas/auth/token",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"145"
+					],
+					"port": "32528",
+					"path": [
+						"kbaas",
+						"auth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.1.145:32528/kbaas/auth/users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "0ff6322f-0510-4103-86cb-1a8582548ea3"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\":\"haisheng\",\"password\":\"123456\"}"
+				},
+				"url": {
+					"raw": "http://192.168.1.145:32528/kbaas/auth/users",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"145"
+					],
+					"port": "32528",
+					"path": [
+						"kbaas",
+						"auth",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

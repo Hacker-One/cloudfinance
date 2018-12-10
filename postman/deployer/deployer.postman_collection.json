@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "de8b9b2f-0f64-4b18-a1fe-3340cf260986",
+		"name": "deployer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "49.4.85.48:30650/deployer/notify?orderId=030cef80-49d0-4e42-9668-470dcd91bda7",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "49.4.85.48:30650/deployer/notify?orderId=030cef80-49d0-4e42-9668-470dcd91bda7",
+					"host": [
+						"49",
+						"4",
+						"85",
+						"48"
+					],
+					"port": "30650",
+					"path": [
+						"deployer",
+						"notify"
+					],
+					"query": [
+						{
+							"key": "orderId",
+							"value": "030cef80-49d0-4e42-9668-470dcd91bda7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:8091//healthCheckService/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "127.0.0.1:8091//healthCheckService/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8091",
+					"path": [
+						"",
+						"healthCheckService",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

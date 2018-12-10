@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "91b447a8-ea25-4dd5-8931-fda2c55fae05",
+		"name": "auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n\"id\": \"chenxiaoji2\",  \n\"smscode\":\"123456\",\n\"password\":\"123456\",\n\"name\":\"陈晓稷\" \n}"
+				},
+				"url": {
+					"raw": "192.168.1.145:30555/users",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"145"
+					],
+					"port": "30555",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getToken",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone\":\"chenxiaoji\",\n\t\"password\":\"1234567\"\n}"
+				},
+				"url": {
+					"raw": "192.168.1.145:30555/token",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"145"
+					],
+					"port": "30555",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
