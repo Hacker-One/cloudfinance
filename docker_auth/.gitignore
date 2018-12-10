@@ -1,0 +1,7 @@
+*.swp
+.idea/
+ca-certificates.crt
+auth_server/auth_server
+auth_server/vendor/*/
+auth_server/ca-certificates.crt
+version.*
