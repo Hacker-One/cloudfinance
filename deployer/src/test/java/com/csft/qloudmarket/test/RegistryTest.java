@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +37,13 @@ public class RegistryTest {
             logger.info(fileUtil.checkAndCreatDirector(new StringBuffer(Common.getPropertiesKey(Common.MA_VOLUME_KEY)).append(Common.SEPARATOR).append("temple").append(Common.SEPARATOR).append("registry").toString()));
             logger.info( fileUtil.checkAndCreatDirector(new StringBuffer(Common.getPropertiesKey(Common.MA_VOLUME_KEY)).append(Common.SEPARATOR).append("temple").append(Common.SEPARATOR).append("charts").toString()));
             logger.info( fileUtil.checkAndCreatDirector(new StringBuffer(Common.getPropertiesKey(Common.MA_VOLUME_KEY)).append(Common.SEPARATOR).append("license").toString()));
-            JSONObject imageOper= registryAccessService.imagePurchaseProgress("qloudtest/standalone-chrome","latest");
+            Map tokenInfo = registryAccessService.getNexusRequestToken(Common.getPropertiesKey(Common.MARKET_USERNAME),Common.getPropertiesKey(Common.MARKET_PWD));
+            Map requestHeader=null;
+            if(tokenInfo!=null&&"ok".equals(((String) tokenInfo.get("status")).toLowerCase())){
+                requestHeader=new HashMap();
+                requestHeader.put("X-Market-Token",tokenInfo.get("access_token"));
+            }
+            JSONObject imageOper= registryAccessService.imagePurchaseProgressNexus("redis","latest",requestHeader);
             logger.info("ssimage operating  over result Info: {}\n", imageOper);
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,6 +128,45 @@ public class RegistryTest {
                 fStream.close();
             }
         }
+    }
+
+    @Test
+    public void uploadApplyNexus(){
+        Map header=new HashMap();
+        header.put("X-Market-Token","YWMtAHu6MvN9EeiLSd0Al3d_yQAAAWeBTsshSkmlW1lN-HjELxpzjsFT7ecuQ2o");
+        try {
+            logger.info("{}",registryAccessService.applyUploadNexus("redis",header));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void checkfile(){
+        FileUtil fileUtil=new FileUtil();
+        try {
+            logger.info("{}",fileUtil.checkFileConsistant("E:\\qcloudCode\\qloudMarket\\market-deployer\\target\\paas\\data\\temple\\registry\\redis\\latest\\0_sha256_c664daa5463dc08cbc6f6411b58d4ac3d7e1df27d704ce948fe5b65424557134",fileUtil.getFileSHA256(new File("E:\\qcloudCode\\qloudMarket\\market-deployer\\target\\paas\\data\\temple\\registry\\redis\\latest\\0_sha256_c664daa5463dc08cbc6f6411b58d4ac3d7e1df27d704ce948fe5b65424557134"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+    }
+    @Test
+    public void loginAuth(){
+        Map tokenInfo= null;
+        try {
+            tokenInfo = registryAccessService.getNexusRequestToken(Common.getPropertiesKey(Common.MARKET_USERNAME),Common.getPropertiesKey(Common.MARKET_PWD));
+            Map requestHeader=null;
+            if(tokenInfo!=null&&"ok".equals(((String) tokenInfo.get("status")).toLowerCase())){
+                requestHeader=new HashMap();
+                requestHeader.put("X-Market-Token",tokenInfo.get("access_token"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 

@@ -109,7 +109,11 @@ public class OrderpollerService {
         //need login and get accountId
         try {
          OrderPojo orderPojo=requestOrder(orderId);
-         if(orderPojo!=null){
+         Map header=getNexusToken();
+
+         //  if(orderPojo!=null){
+
+         if(orderPojo!=null&& header!=null){
 
              logData.put("orderInfo",orderPojo);
 
@@ -119,11 +123,10 @@ public class OrderpollerService {
            if(artifacts!=null&&artifacts.size()>0){
                for(ArtifactPojo artifactPojo:artifacts) {
                    String typeName = artifactPojo.getTypeName().toLowerCase();
-
                    if (Common.MA_COMMON_ARTIFACT_TYPE_DOCKER.equals(typeName)) {
                        String tag = artifactPojo.getTag();
                        logger.info("{}SSSS{}", artifactPojo.getUrl(), tag);
-                       JSONObject imageOper = registryAccessService.imagePurchaseProgress(artifactPojo.getUrl(), tag); //购买后触发image 文件上传
+                       JSONObject imageOper = registryAccessService.imagePurchaseProgressNexus(artifactPojo.getUrl(),tag,header); //购买后触发image 文件上传
                        logger.info("image operating  over result Info: {}\n", imageOper);
 
                        logData.put("reg_" + artifactPojo.getUrl() + "_" + tag, imageOper);
@@ -306,11 +309,21 @@ public class OrderpollerService {
            sended.put("data",data);
 
        }else {
-           sended.put("msg","unDeployed");
+           sended.put("msg","undeployed");
            sended.put("data",data);
        }
         String sendstr=JacksonUtils.mapToJson(sended);
         result=  httpUtils.sendJsonBody(url,HTTPUtils.METHOD_POST,sendstr.getBytes("utf-8"));
         logger.info("result:",result);
+    }
+
+    private Map getNexusToken() throws Exception {
+        Map tokenInfo=  registryAccessService.getNexusRequestToken(Common.getPropertiesKey(Common.MARKET_USERNAME),Common.getPropertiesKey(Common.MARKET_PWD));
+        Map requestHeader=null;
+        if(tokenInfo!=null&&"ok".equals(((String) tokenInfo.get("status")).toLowerCase())){
+            requestHeader=new HashMap();
+            requestHeader.put("X-Market-Token",tokenInfo.get("access_token"));
+        }
+        return requestHeader;
     }
 }

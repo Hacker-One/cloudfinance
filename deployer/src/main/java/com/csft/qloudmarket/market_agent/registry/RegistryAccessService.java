@@ -1,5 +1,7 @@
 package com.csft.qloudmarket.market_agent.registry;
 
+import com.csft.qloudmarket.market_agent.auth_service.pojo.AuthUser;
+import com.csft.qloudmarket.market_agent.auth_service.service.AuthService;
 import com.csft.qloudmarket.market_agent.util.*;
 import io.netty.handler.codec.http.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +56,7 @@ public class RegistryAccessService {
 
     private FileUtil fileUtil = new FileUtil();
 
+    private AuthService authService=new AuthService();
 
     /**
      * query  catalog of market's image
@@ -82,6 +85,18 @@ public class RegistryAccessService {
         header.put("Authorization",token);
       byte[] maniData=  httpUtils.httpsRequestRebyte(url,HTTPUtils.METHOD_GET,header,"");
      //  logger.info("maniDAta:{}",new String(maniData));
+        return maniData;
+    }
+
+
+
+    public byte[] queryManifestNexus(String imageName, String tag,Map header) throws Exception {
+        //imageName = HTTPUtils.enodeString(imageName);
+        String url = new StringBuffer(BASE_MARKET_RE_URL).append(imageName).append("/manifests/").append(tag).toString();
+        HTTPUtils httpUtils = new HTTPUtils();
+        JSONObject jsonObject = null;
+        byte[] maniData=  httpUtils.httpsRequestRebyte(url,HTTPUtils.METHOD_GET,header,"");
+        //  logger.info("maniDAta:{}",new String(maniData));
         return maniData;
     }
 
@@ -126,6 +141,54 @@ public class RegistryAccessService {
         logger.info("...........................................imagePurchaseProgress {}. {}  ---- OVER !!!!!!",name,tag);
         return result;
     }
+
+
+
+
+    public JSONObject imagePurchaseProgressNexus(String name, String tag,Map requestHeader) throws Exception {
+        JSONObject result = new JSONObject();
+        result.put("type","registry");
+        result.put("name",name+":"+tag);
+        // try {
+        logger.info("...........................................imagePurchaseProgress {}. {}",name,tag);
+        String scope=name+":pull";
+      //  Map tokeninfo= getNexusRequestToken(Common.getPropertiesKey(Common.MARKET_USERNAME),Common.getPropertiesKey(Common.MARKET_PWD));
+      //  Map tokenMap=  JacksonUtils.json2map(tokeninfo);
+        //  String token="";
+     //   String token=(String) tokenMap.get("token");
+//        Map requestHeader=new HashMap();
+//        requestHeader.put("X-Market-Token",token);
+        byte[] sManifest = queryManifestNexus(name, tag, requestHeader);
+        JSONObject jsonObject = JSONObject.fromObject(new String(sManifest, "utf-8"));
+        logger.info("\nbegin to pull image********************************\n{}",jsonObject);
+        jsonObject = pullMarketCodeNexus(jsonObject,requestHeader);
+        logger.info("\n previous info :{}\nPull Over begin to push image********************************",jsonObject);
+        JSONObject pushRes = pushImageNexus(jsonObject,requestHeader);
+        logger.info("push OVER    {}",pushRes);
+        if (Boolean.valueOf((Boolean) pushRes.get("success"))) {
+
+            logger.info("upload manifest :{}",new String(sManifest));
+
+            JSONObject info = uploadManifestNexus(name, tag, sManifest,requestHeader);// upload Manifest
+
+            if ((Boolean) info.get("success")) {
+                logger.info("@@@@@success to execute !!!!!!!");
+                result.put("msg","success");
+            } else {
+                logger.info("@@@@@failed to execute !!!!!!!");
+                result.put("msg","failed");
+
+            }
+        } else {
+            logger.info("@@@@@@upload registry failed to execute !!!!!!!");
+            result.put("msg","failed");
+        }
+        logger.info("...........................................imagePurchaseProgress {}. {}  ---- OVER !!!!!!",name,tag);
+        return result;
+    }
+
+
+
 
 
     /**
@@ -173,15 +236,30 @@ public class RegistryAccessService {
     }
 
 
-    /**
-     * 下载层
-     *
-     * @param name
-     * @param savePath
-     * @param LayerInfo
-     * @return filePath's list
-     * @throws Exception
-     */
+
+    public JSONArray downloadLayersNexus(String name, String savePath, JSONArray LayerInfo,Map header) throws Exception {
+        JSONArray result = null;
+        if (LayerInfo != null && LayerInfo.size() > 0) {
+            int i = 0;
+            result = new JSONArray();
+            for (Object obj : LayerInfo) {
+                JSONObject json = (JSONObject) obj;
+                String blobStr = (String) json.get(BLOBS_KEY);
+                if(!checkBlobExistNexus(name,blobStr,header)) {
+                    logger.info("{} 's blob {} not exist on target registry ",name,blobStr);
+                    String fileName = (new StringBuffer().append(i).append(FILE_C_CHART).append(blobStr.replace(FILE_O_CHART, FILE_C_CHART))).toString(); // like 0@sha256_?  1@sha256_? .....
+                    logger.info(" blob:{} @fileName :{},savePath: {}", blobStr, fileName, savePath);
+                    result.add(pullCodeByBlobNexus(savePath, name, fileName, blobStr, header));
+                    i++;
+                }else
+                {
+                    logger.info("{} 's blob {} exist on target registry ",name,blobStr);
+                }
+            }
+        }
+        return result;
+    }
+
     public JSONArray downloadLayers(String name, String savePath, JSONArray LayerInfo,String token) throws Exception {
         JSONArray result = null;
         if (LayerInfo != null && LayerInfo.size() > 0) {
@@ -242,6 +320,38 @@ public class RegistryAccessService {
         return result;
     }
 
+
+
+
+    public JSONObject pullCodeByBlobNexus(String savingPath, String name, String fileName, String blobCode,Map header) throws Exception {
+        JSONObject result = null;
+        HttpURLConnection httpConnection = null;
+        HTTPUtils httpUtils = new HTTPUtils();
+        //name = HTTPUtils.enodeString(name);
+        String url = new StringBuffer(BASE_MARKET_RE_URL).append(name).append("/blobs/").append(blobCode).toString();
+        logger.info("url:{}", url);
+        try {
+            result = new JSONObject();
+            String path = (new StringBuffer(savingPath)).append(File.separator).append(fileName).toString();
+            File f=new File(path);
+            //       if(!fileUtil.checkFileConsistant(path,blobCode)) { // down load layer .if it is not exist
+            if(!f.exists()){
+                httpConnection = httpUtils.createConnection(url, HTTPUtils.METHOD_GET, header, null);
+                fileUtil.writeFile(savingPath, fileName, httpConnection.getInputStream());
+            }else{
+                logger.info(" file {} exist ! next file !",fileName);
+            }
+            result.put("filePath", path);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (httpConnection != null)
+                httpConnection.disconnect();
+        }
+        return result;
+    }
+
     /**
      * @param jsonObject
      * @return
@@ -255,6 +365,27 @@ public class RegistryAccessService {
            String strName = createPulledDirectory(name, tag);
          //    String strName =createPulledDirectoryLocal(); //all image layer put in one fold
             JSONArray filePath = downloadLayers(name, strName, array,token);//down load image return filePathList
+            jsonObject.put("filePaths", filePath); //save filePaths
+            logger.info("info {}", jsonObject);
+            result = jsonObject;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return result;
+    }
+
+
+
+    public JSONObject pullMarketCodeNexus(JSONObject jsonObject,Map header) throws Exception {
+        JSONObject result = null;
+        try {
+            String name = (String) jsonObject.get("name");
+            String tag = (String) jsonObject.get("tag");
+            JSONArray array = (JSONArray) jsonObject.get(FSLAYER_KEY);
+            String strName = createPulledDirectory(name, tag);
+            //    String strName =createPulledDirectoryLocal(); //all image layer put in one fold
+            JSONArray filePath = downloadLayersNexus(name, strName, array,header);//down load image return filePathList
             jsonObject.put("filePaths", filePath); //save filePaths
             logger.info("info {}", jsonObject);
             result = jsonObject;
@@ -281,6 +412,20 @@ public class RegistryAccessService {
         logger.info("\n apply OVER");
         return info;
     }
+
+
+    public JSONObject applyUploadNexus(String name,Map header) throws Exception {
+        //  name = HTTPUtils.enodeString(name);
+        logger.info("\n applyUpload");
+        String url = new StringBuffer(BASE_BANK_PASS_RE_URL).append(name).append("/blobs/uploads/").toString();
+        HTTPUtils httpUtils = new HTTPUtils();
+        JSONObject info = null;
+        info = httpUtils.getHeadInnfoNexus(url, HTTPUtils.METHOD_POST, header, null);
+        logger.info("\n apply OVER");
+        return info;
+    }
+
+
 
 
     /**
@@ -372,6 +517,63 @@ public class RegistryAccessService {
     }
 
 
+    private JSONObject uploadImageBlockNexus(String name, File file,Map header) throws IOException {
+        JSONObject result = null;
+        HTTPUtils httpUtils = new HTTPUtils();
+        FileInputStream fStream = null;
+        try {
+            logger.info("begin apply ");
+            JSONObject obj = applyUploadNexus(name,header); // apply and get uuid
+            String message = (String) obj.get("message");
+            String location = (String) obj.get("Location");
+            logger.info("requeser apply upload ");
+            if ("Accepted".equals(message.trim())) {
+                logger.info("Accepted");
+                String layerName = toLayerName(file.getName());
+                fStream = new FileInputStream(file);
+                logger.info("set upload size");
+                int bufferSize = Integer.parseInt(Common.getPropertiesKey(Common.MA_UPLOAD_SIZE,"102400"));
+                byte[] buffer = new byte[bufferSize];
+                int length = -1;
+                int begin = 0;
+                int end = 0;
+                boolean isLast = false;
+                logger.info("file length:{}", location);
+                while ((length = fStream.read(buffer)) != -1) {
+                    logger.info("\n******************************************begin:{}", length);
+                    end = begin + length - 1;
+                    if (length < bufferSize && end == (file.length() - 1)) {
+                        isLast = true;
+                        location = appednDigets2(location, layerName);
+                    }
+                    String baseurl=Common.getPropertiesKey(Common.MA_RE_BKRE_KEY);
+                    location=baseurl.substring(0,(baseurl.length()-4))+location;
+                    logger.info("\nlocation:{}\nlength:{}\nbegin:{}\nend:{}\nisLast:{}", location, length, begin, end, isLast);
+                    result = httpUtils.uploadLayerChunkNexus(location, length, begin, end, buffer, isLast, length,header);
+                    begin = end + 1;
+                    logger.info("result:{}", result);
+                    location = (String) ((List) result.get("location")).get(0);
+                    logger.info("******************************************end:{}", length);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            logger.info("EXCEPTION:{}", e.getStackTrace());
+            throw e;
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.info("EXCEPTION:{}", e.getStackTrace());
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fStream != null) {
+                fStream.close();
+            }
+        }
+        return result;
+    }
+
 
     private JSONObject uploadImageBlock(String name, File file) throws IOException {
         JSONObject result = null;
@@ -400,7 +602,7 @@ public class RegistryAccessService {
                     end = begin + length - 1;
                     if (length < bufferSize && end == (file.length() - 1)) {
                         isLast = true;
-                        location = appednDigets(location, layerName);
+                        location = appednDigets2(location, layerName);
                     }
                     logger.info("\nlocation:{}\nlength:{}\nbegin:{}\nend:{}\nisLast:{}", location, length, begin, end, isLast);
                     result = httpUtils.uploadLayerChunk(location, length, begin, end, buffer, isLast, length);
@@ -428,6 +630,52 @@ public class RegistryAccessService {
         return result;
     }
 
+
+
+    private JSONArray uploadImagesNexus(JSONArray fileList, String name, Boolean rollback,Map header) {
+        JSONArray uploaded = new JSONArray(); //retain the uuid that has been uploaded.
+        //Map resultInfo =null;
+        // logger.info("fileList{}",fileList);
+        if (fileList != null && fileList.size() > 0) {
+            for (int i = 0; i < fileList.size(); i++) {
+                JSONObject jsonObject = (JSONObject) fileList.get(i);
+                String path = (String) jsonObject.get("filePath");
+                File file = checkFile(path);
+                logger.info("file Path:{}@ file exist", path,file.exists());
+                if (file != null) {
+                    logger.info("*************push ****************");
+                    JSONObject singleRS = null;
+                    int tryT=1;
+                    do {
+                    try {
+
+                            logger.info("\n file {}\n {} upload",file.getName(),tryT);
+                            singleRS = uploadImageBlockNexus(name, file, header);
+                            tryT=5;
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        logger.info("\n uploadImagesNexus ERROR :{}",e.getStackTrace());
+                        tryT++;
+                    }
+                    } while (tryT<5);
+                    // JSONObject singleRS = uploadImage(name, file);
+                    if ("success".equals((String) singleRS.get("status"))) {
+                        uploaded.add(singleRS);
+                    } else {
+                        rollback = true;
+//                        break;
+                        continue;
+                    }
+                } else {
+                    logger.info("file not exist");
+                }
+            }
+        } else {
+            return uploaded;
+        }
+        return uploaded;
+    }
 
 
     /**
@@ -491,6 +739,31 @@ public class RegistryAccessService {
         result.put("uploaded", uploaded);
         return result;
     }
+
+    public JSONObject pushImageNexus(JSONObject maniFest,Map header) throws Exception {
+        JSONObject result = new JSONObject();
+        String name = (String) maniFest.get("name");
+        //  String tag = (String) maniFest.get("tag");
+        JSONArray fileList = (JSONArray) maniFest.get("filePaths");
+        //put your code
+        Boolean rollback = false;
+        logger.info("\n fileList.SIZE:{}", fileList.size());
+        JSONArray uploaded = uploadImagesNexus(fileList, name, rollback,header);
+        logger.info("\n uploaded:{}", uploaded);
+        if (rollback) {
+            //go rollback proceed
+            result.put("success", false);
+            return result;
+        }
+        result.put("success", true);
+        result.put("uploaded", uploaded);
+        return result;
+    }
+
+
+
+
+
 
 
     /**
@@ -568,14 +841,6 @@ public class RegistryAccessService {
         return result;
     }
 
-    /**
-     * 上传代买
-     * @param name
-     * @param tag
-     * @param info
-     * @return
-     * @throws Exception
-     */
     public JSONObject uploadManifest(String name, String tag, byte[] info) throws Exception {
         String url = new StringBuffer(BASE_BANK_PASS_RE_URL).append(name).append("/manifests/").append(tag).toString();
         HTTPUtils httpUtils = new HTTPUtils();
@@ -584,19 +849,34 @@ public class RegistryAccessService {
     }
 
 
+    public JSONObject uploadManifestNexus(String name, String tag, byte[] info,Map header) throws Exception {
+        String url = new StringBuffer(BASE_BANK_PASS_RE_URL).append(name).append("/manifests/").append(tag).toString();
+        HTTPUtils httpUtils = new HTTPUtils();
+        JSONObject response = httpUtils.sendJsonBodyNexus(url, HTTPUtils.METHOD_PUT, info,header);
+        return response;
+    }
+
+
+    public boolean checkBlobExistNexus(String image, String digest,Map header) throws UnsupportedEncodingException {
+        HTTPUtils httpUtils = new HTTPUtils();
+        // image= httpUtils.enodeString(image);
+        String url = new StringBuffer(BASE_BANK_PASS_RE_URL).append(image).append("/blobs/").append(digest).toString();
+        logger.info("checkBloburl:{}", url);
+        try {
+            int info = httpUtils.gethttpsResponseCode(url,HTTPUtils.METHOD_HEAD, header, null);
+            logger.info("exist info {}", info);
+            if (info==200||info==201) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
 
 
 
-
-
-
-    /**
-     * check the layer exists if return true that you could not upload your file
-     *
-     * @param image
-     * @param digest
-     * @return
-     */
     public boolean checkBlobExist(String image, String digest) throws UnsupportedEncodingException {
         HTTPUtils httpUtils = new HTTPUtils();
        // image= httpUtils.enodeString(image);
@@ -634,6 +914,14 @@ public class RegistryAccessService {
 //        }
 //        return false;
 //    }
+
+    public Map getNexusRequestToken(String userName,String pwd) throws Exception {
+        AuthUser authUser=new AuthUser();
+        authUser.setId(userName);
+        authUser.setPassword(pwd);
+       return   authService.getLoginToken(authUser);
+    }
+
 
 
     public String getImageToken(String userName,String pwd,String scop) throws Exception {

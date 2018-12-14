@@ -67,6 +67,16 @@ public class Common {
 
     public static  final String MA_DEPLOYER_TYPE_KEY="marketAgent.deploy.TYPE";
     public static  final String MA_DEPLOYER_VERSION="marketAgent.VERSION";
+    public static final String AUTH_APIKEY_KEY="auth_apiKey";
+
+    public static final String CHART_ADDRESS="chartAddress";
+    public static final String AUTH_BASE_URL="authBaseAddress";
+    public static final String API_GATEWAY_ADD_KEY="api_gateway_address";
+
+    public static final String AUTH_USER_PATH="/users";
+    public static final String AUTH_TOKEN_PATH="/token";
+    public static final String AUTH_TOKEN_JWT_PATH="/jwt";
+
     static {
         try {
             logger.info("begin to initial ");

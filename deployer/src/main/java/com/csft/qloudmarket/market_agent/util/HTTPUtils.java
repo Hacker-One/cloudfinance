@@ -38,6 +38,10 @@ public class HTTPUtils {
     public static final String METHOD_HEAD = "HEAD";
     public static final String METHOD_DELETE="DELETE";
 
+    public static final String CONTENT_TYPE="Content-Type";
+    public static final String JSON_CONTENT_TYPE="application/json";
+    public static final String API_KEY="apikey";
+
     /**
      * 创建HTTP连接
      *
@@ -96,6 +100,60 @@ public class HTTPUtils {
         return httpConnection;
     }
 
+    public JSONObject sendJsonBodyNexus(String url, String method,byte[] body, Map<String, String> header)
+            throws Exception {
+        String encoding = "UTF-8";
+        URL Url = new URL(url);
+        trustAllHttpsCertificates();
+        HttpURLConnection httpConnection = (HttpURLConnection) Url
+                .openConnection();
+        // 设置请求时间
+        httpConnection.setConnectTimeout(TIMEOUT);
+        // 设置 header
+        JSONObject result = new JSONObject();
+        httpConnection.setDoOutput(true);
+        httpConnection.setDoInput(true);
+        httpConnection.setUseCaches(false);
+        httpConnection.setRequestProperty("Connection", "Keep-Alive");
+        httpConnection.setRequestProperty("Charset", "UTF-8");
+        httpConnection.setRequestProperty("Accept", "*/*");
+        // 设置文件类型:
+        httpConnection.setRequestProperty("Content-Type", "application/json");
+        // 设置接收类型否则返回415错误
+        if (header != null) {
+            Iterator<String> iteratorHeader = header.keySet()
+                    .iterator();
+            while (iteratorHeader.hasNext()) {
+                String key = iteratorHeader.next();
+                httpConnection.setRequestProperty(key,header.get(key));
+            }
+        }
+        // 设置请求方法
+        httpConnection.setRequestMethod(method);
+        if (body != null && body.length > 0) {
+            httpConnection.setRequestProperty("Content-Length", String.valueOf(body.length));
+            OutputStream writer = httpConnection.getOutputStream();
+            writer.write(body);
+            writer.flush();
+        }
+        // 请求结果
+        int responseCode = httpConnection.getResponseCode();
+        logger.info("code:{}", responseCode);
+        if (responseCode == 201 || responseCode == 200) {
+            logger.info("success {}", inputStream2String(httpConnection.getInputStream(), encoding));
+            result.put("success", true);
+            return result;
+        } else {
+            logger.info("error {}", inputStream2String(httpConnection.getErrorStream(), encoding));
+            result.put("success", false);
+            return result;
+        }
+
+
+    }
+
+
+
     public JSONObject sendJsonBody(String url, String method,byte[] body)
             throws Exception {
         String encoding = "UTF-8";
@@ -138,6 +196,59 @@ public class HTTPUtils {
         }
 
 
+    }
+
+
+    /**
+     * @param url
+     * @param method
+     * @param headerParameters
+     * @param body
+     * @return
+     * @throws Exception
+     */
+    public JSONObject getHeadInnfoNexus(String url,
+                                   String method, Map<String, String> headerParameters, String body)
+            throws Exception {
+        URL Url = new URL(url);
+        trustAllHttpsCertificates();
+        JSONObject result = new JSONObject();
+        HttpURLConnection httpConnection = (HttpURLConnection) Url
+                .openConnection();
+        // 设置请求时间
+        httpConnection.setConnectTimeout(TIMEOUT);
+        // 设置 header
+        if (headerParameters != null) {
+            Iterator<String> iteratorHeader = headerParameters.keySet()
+                    .iterator();
+            while (iteratorHeader.hasNext()) {
+                String key = iteratorHeader.next();
+                httpConnection.setRequestProperty(key,
+                        headerParameters.get(key));
+            }
+        }
+        httpConnection.setRequestProperty("Content-Type",
+                "application/x-www-form-urlencoded;charset=" + ENCODING);
+        // 设置请求方法
+        httpConnection.setRequestMethod(method);
+        httpConnection.setDoOutput(true);
+        httpConnection.setDoInput(true);
+        // 写query数据流
+        String message = httpConnection.getResponseMessage();
+        String code = String.valueOf(httpConnection.getResponseCode());
+        httpConnection.getHeaderFields();
+        Map headerFields = httpConnection.getHeaderFields();
+        System.out.println(headerFields.toString());
+        result.put("code", code);
+        result.put("message", message);
+        if ("202".equals(code)) {
+            String uuid = headerFields.get("Docker-Upload-UUID").toString();
+            String location = headerFields.get("Location").toString();
+            result.put("uuid", uuid.substring(1, uuid.length() - 1));
+            result.put("Location", location.substring(1, location.length() - 1));
+        }
+
+        return result;
     }
 
 
@@ -1134,6 +1245,57 @@ public class HTTPUtils {
         }
         return result;
     }
+
+
+    public JSONObject uploadLayerChunkNexus(String actionUrl, int size, int begin, int end, byte []  chunk,boolean islast,int length,Map header) throws IOException {
+        JSONObject result = new JSONObject();
+        OkHttpClient client = (new OkHttpClient()).newBuilder()
+                .connectTimeout(60,TimeUnit.SECONDS)
+                .writeTimeout(30,TimeUnit.SECONDS)
+                .readTimeout(30,TimeUnit.SECONDS)
+                .sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
+                .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+                .build();
+        String beginAndEnd=new StringBuffer().append(begin).append("-").append(end).toString();
+        Request request =null;
+        if(!islast) {
+            request = new Request.Builder()
+                    .url(actionUrl)
+                    .patch(RequestBody.create(MEDIA_TYPE_MARKDOWN, chunk,0,length))
+                    .addHeader("Content-Length", String.valueOf(size))
+                    .addHeader("Content-Range", beginAndEnd)
+                    .addHeader("X-Market-Token", (String) header.get("X-Market-Token"))
+                    .build();
+        }else {
+            request = new Request.Builder()
+                    .url(actionUrl)
+                    .put(RequestBody.create(MEDIA_TYPE_MARKDOWN, chunk,0,length))
+                    .addHeader("Content-Length", String.valueOf(size))
+                    .addHeader("Content-Range", beginAndEnd)
+                    .addHeader("Connection", "Keep-Alive")
+                    .addHeader("Charset", "UTF-8")
+                    .addHeader("Accept", "*/*")
+                    .addHeader("X-Market-Token", (String) header.get("X-Market-Token"))
+                    .build();
+        }
+        Response response = client.newCall(request).execute();
+        logger.info("\n code:{}",response.code());
+        if (response.code() ==202||response.code()  == 201) {
+            result.put("success", "true");
+            result.put("size", size);
+            result.put("beginAndend", beginAndEnd);
+            Map resultInfo = response.headers().toMultimap();
+            result.put("location", resultInfo.get("Location"));
+            logger.info("resultInfo: {}",resultInfo);
+        } else {
+            result.put("success", "false");
+            Map resultInfo = response.headers().toMultimap();
+            result.put("location", resultInfo.get("Location"));
+            logger.info("resultInfo: {}",resultInfo);
+        }
+        return result;
+    }
+
 
 
     public static String uploadFile(String actionUrl, File uploadFilePaths, String location) {
