@@ -2,6 +2,7 @@ package com.ctfs.qloudMarket.market_service;
 
 import com.ctfs.qloudMarket.market_service.agent_service.service.AgentService;
 import com.ctfs.qloudMarket.market_service.util.DateUtils;
+import com.ctfs.qloudMarket.market_service.util.anotation.CommonServiceParam;
 
 import java.util.*;
 
@@ -31,5 +32,21 @@ public class Test {
 
       // System.out.println( AgentService.generatorToken("192.168.11.22"));
         System.out.println(   DateUtils.getCurrentDate(DateUtils.DATESHORTFORMAT));
+        Test test=new Test();
+        test.test2();
+    }
+
+    @CommonServiceParam(methodName = "getAccountProducts",path ="/accounts/*/products")
+    public void test(){
+//        boolean hasAnnotation = Test..isAnnotationPresent(CommonServiceParam.class);
+//        if ( hasAnnotation ) {
+//            CommonServiceParam commonServiceParam = Test.class.getAnnotation(CommonServiceParam.class); //获取类的注解
+//           System.out.println("id:"+commonServiceParam.methodName());
+//           System.out.println("msg:"+commonServiceParam.path());
+//        }
+    }
+   // @CommonServiceParam(methodName = "getAccountProducts",path ="/accounts/*/products")
+    public void test2(){
+        this.test();
     }
 }

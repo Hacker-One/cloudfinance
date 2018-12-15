@@ -28,7 +28,7 @@ public class UserDao {
     private static String INSERT_USER="insert into tb_user(id,name,account_id,pwd) values(?,?,?,?) ";
     private static String QUERY_USER_ACCOUNT="select b.id,b.name,b.hook,b.contact_num,b.email from tb_user a,tb_account b where a.id=? and a.`status`='N' and b.`status`='N' and a.account_id=b.id";
 
-    private static String USER_LOGIN="select id,name,account_id from tb_user where id=? and pwd=? and status='N' ";
+    private static String USER_LOGIN="select id,name,account_id from tb_user where id=? and status='N' ";
     /**
      * add user
      * @param connection
@@ -98,16 +98,14 @@ public class UserDao {
 
 
 
-    public UserPojo userLogin(Connection connection, String userId,String pwd) throws Exception {
+    public UserPojo userLogin(Connection connection, String userId) throws Exception {
         PreparedStatement pstmt = null;
         ResultSet rs=null;
         UserPojo result=null;
         try {
             pstmt = connection.prepareStatement(USER_LOGIN);
             pstmt.setString(1, userId);
-            pstmt.setString(2, pwd);
             rs= pstmt.executeQuery();
-
             if (rs.next()){
                 result=new UserPojo();
                 result.setId(rs.getString("id"));

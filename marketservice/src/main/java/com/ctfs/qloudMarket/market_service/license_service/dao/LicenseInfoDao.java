@@ -30,22 +30,24 @@ public class LicenseInfoDao {
             "select license_key  as licenseKey,artifact_id as artifactId,valid_date as validDate,invalid_date as invalidDate,signature,customer_id as customerId from tb_license_info where artifact_id=? and customer_id=? and is_del='N' " ;
 // -------------------------------------------------------------------------------------------------------------------------------
     private static final String INSERT_LICENSE=
-            "insert into tb_license(expired_date,content,product_id,account_id,create_date) values(?,?,?,?,?)";
+            "insert into tb_license(expired_date,content,product_id,account_id,create_date,pcode) values(?,?,?,?,?,?)";
     private static final String QUERY_LICENSE=
-            "select id,expired_date,content,product_id,account_id,create_date from tb_license where product_id=? and account_id=? and status='N' order by create_date desc";
+            "select id,expired_date,content,product_id,account_id,create_date,pcode from tb_license where product_id=? and account_id=? and status='N' order by create_date desc";
 
+    private static final String QUERY_LICENSE_PCODE=
+            "select id,expired_date,content,product_id,account_id,create_date,pcode from tb_license where pcode=? and status='N'";
     private static final String QUERY_LICENSE_BY_ID=
-            "select id,expired_date,content,product_id,account_id ,create_date from tb_license where  status='N'  and id=?";
+            "select id,expired_date,content,product_id,account_id ,create_date,pcode from tb_license where  status='N'  and id=?";
 
 
 
-    public LicensePojo getLicense(Connection connection, Integer id) throws Exception {
+    public LicensePojo getLicenseById(Connection connection, Integer id) throws Exception {
 
         PreparedStatement pstmt = null;
         ResultSet rs=null;
         LicensePojo result=null;
         try {
-            logger.info("getLicense@sql:{}",QUERY_LICENSE_BY_ID);
+            logger.info("getLicenseById @sql:{}",QUERY_LICENSE_BY_ID);
             pstmt = connection.prepareStatement(QUERY_LICENSE_BY_ID);
             pstmt.setInt(1, id);
             rs= pstmt.executeQuery();
@@ -57,6 +59,7 @@ public class LicenseInfoDao {
                 result.setContent(rs.getString("content"));
                 result.setProduct(rs.getString("product_id"));
                 result.setCreateDate(rs.getString("create_date"));
+                result.setPcode(rs.getString("pcode"));
             }
 
         } catch (Exception e) {
@@ -78,7 +81,7 @@ public class LicenseInfoDao {
         ResultSet rs=null;
         LicensePojo result=null;
         try {
-            logger.info("sql:{}",QUERY_LICENSE);
+            logger.info("getLicense sql:{}",QUERY_LICENSE);
             pstmt = connection.prepareStatement(QUERY_LICENSE);
             pstmt.setString(1, productId);
             pstmt.setString(2, accountId);
@@ -91,6 +94,7 @@ public class LicenseInfoDao {
                 result.setContent(rs.getString("content"));
                 result.setProduct(rs.getString("product_id"));
                 result.setCreateDate(rs.getString("create_date"));
+                result.setPcode(rs.getString("pcode"));
             }
 
         } catch (Exception e) {
@@ -101,10 +105,47 @@ public class LicenseInfoDao {
                 rs.close();
             if(pstmt!=null)
                 pstmt.close();
-             //   connection.close();
+            //   connection.close();
         }
         return result;
     }
+
+
+    public LicensePojo getLicenseByPcode(Connection connection, String pcode) throws Exception {
+
+        PreparedStatement pstmt = null;
+        ResultSet rs=null;
+        LicensePojo result=null;
+        try {
+            logger.info("getLicense sql:{}",QUERY_LICENSE_PCODE);
+            pstmt = connection.prepareStatement(QUERY_LICENSE_PCODE);
+            pstmt.setString(1, pcode);
+
+            rs= pstmt.executeQuery();
+            if(rs.next()){
+                result=new LicensePojo();
+                result.setAccount(rs.getString("account_id"));
+                result.setId(rs.getInt("id"));
+                result.setExpiredDate(rs.getString("expired_date"));
+                result.setContent(rs.getString("content"));
+                result.setProduct(rs.getString("product_id"));
+                result.setCreateDate(rs.getString("create_date"));
+                result.setPcode(rs.getString("pcode"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw  e;
+        } finally {
+            if(rs!=null)
+                rs.close();
+            if(pstmt!=null)
+                pstmt.close();
+            //   connection.close();
+        }
+        return result;
+    }
+
 
     /**
      * insert an
@@ -119,13 +160,14 @@ public class LicenseInfoDao {
         int result=0;
         try {
 
-            logger.info("sql:{}",INSERT_LICENSE);
+            logger.info(" putLicense sql:{}",INSERT_LICENSE);
             pstmt = connection.prepareStatement(INSERT_LICENSE);
             pstmt.setString(1, licenseInfo.getExpiredDate());
             pstmt.setString(2, licenseInfo.getContent());
             pstmt.setString(3, licenseInfo.getProduct());
             pstmt.setString(4, licenseInfo.getAccount());
             pstmt.setString(5, licenseInfo.getCreateDate());
+            pstmt.setString(6, licenseInfo.getPcode());
             result=  pstmt.executeUpdate();
             logger.info("result:{}",result);
         } catch (SQLException e) {
@@ -152,6 +194,7 @@ public class LicenseInfoDao {
      * @return
      * @throws Exception
      */
+    @Deprecated
     public LicenseInfo getLicenseInfo(Connection connection,LicenseInfo licenseInfo) throws Exception {
         JdbcPool instance = JdbcPool.getInstance();
         PreparedStatement pstmt = null;
@@ -199,6 +242,7 @@ public class LicenseInfoDao {
      * @return
      * @throws Exception
      */
+    @Deprecated
     public int putLicenseInfo(Connection connection,LicenseInfo licenseInfo) throws Exception {
 
         PreparedStatement pstmt = null;

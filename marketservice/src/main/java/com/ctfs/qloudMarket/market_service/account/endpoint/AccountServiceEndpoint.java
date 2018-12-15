@@ -5,6 +5,7 @@ import com.ctfs.qloudMarket.market_service.account.service.AccountService;
 import com.ctfs.qloudMarket.market_service.product.pojo.ProductPojo;
 import com.ctfs.qloudMarket.market_service.util.BaseEndpoint;
 import com.ctfs.qloudMarket.market_service.util.JacksonUtils;
+import com.ctfs.qloudMarket.market_service.util.anotation.CommonServiceParam;
 import com.ctfs.qloudMarket.market_service.vendor.endpoint.VendorServiceEndpoint;
 import com.qloudfin.qloudbus.annotation.HeaderParam;
 import com.qloudfin.qloudbus.annotation.PathVariable;
@@ -37,8 +38,7 @@ public class AccountServiceEndpoint  extends BaseEndpoint{
         Map result=new HashMap();
         try {
             logger.info("\n\n\ntoken :{}",token);
-            result = (Map) this.doService(token,accountService,"addAccount","/accounts",requestBody);
-
+            result = (Map) this.doService(token,accountService,"addAccount","POST /accounts",requestBody);
         } catch (Exception e) {
             logger.info("error:{}",e.getStackTrace());
             result.put("code","001");
@@ -52,16 +52,8 @@ public class AccountServiceEndpoint  extends BaseEndpoint{
     public void getAccount(final Callback<Map> callback, @PathVariable("id") String id,@HeaderParam("X-Qloud-Token") String token ){
         Map result=new HashMap();
         try {
-            AccountPojo accountPojo=  accountService.getAccount(id);
-            if(accountPojo!=null){
-                Map data= JacksonUtils.json2map(JacksonUtils.obj2json(accountPojo));
-                result.put("code","000");
-                result.put("msg","succeed");
-                result.put("data",data);
-            }else {
-                result.put("code","002");
-                result.put("msg","error");
-            }
+            logger.info("\ngetAccount token :{}",token);
+            result = (Map) this.doService(token,accountService,"getAccountById","GET /accounts/*",id);
             callback.accept(result);
         } catch (Exception e) {
             logger.info("error:{}",e.getStackTrace());
@@ -80,10 +72,7 @@ public class AccountServiceEndpoint  extends BaseEndpoint{
     public void getAccountProducts(final Callback<Map> callback, @PathVariable("id") String id,@HeaderParam("X-Qloud-Token") String token ){
         Map result=new HashMap();
         try {
-            Map<String,List> data=  accountService.getAccountProducts(id);
-                result.put("code","000");
-                result.put("msg","succeed");
-                result.put("data",data);
+           result = (Map) this.doService(token,accountService,"getAccountProducts","GET /accounts/*/products",id);
             callback.accept(result);
         } catch (Exception e) {
             logger.info("error:{}",e.getStackTrace());

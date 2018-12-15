@@ -40,6 +40,8 @@ public class HTTPUtils {
     public static final String CONTENT_TYPE="Content-Type";
     public static final String JSON_CONTENT_TYPE="application/json";
 
+    public static final String API_KEY="apikey";
+
 
 
     /**

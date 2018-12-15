@@ -1,9 +1,9 @@
 package com.ctfs.qloudMarket.market_service.util;
 
-import com.ctfs.qloudMarket.market_service.account.endpoint.AccountServiceEndpoint;
-import com.ctfs.qloudMarket.market_service.auth_server.service.AuthService;
+import com.ctfs.qloudMarket.market_service.account.pojo.UserPojo;
+import com.ctfs.qloudMarket.market_service.account.service.UserService;
+import com.ctfs.qloudMarket.market_service.auth_service.service.AuthService;
 import com.ctfs.qloudMarket.market_service.permission_service.service.PermissionServer;
-import io.netty.handler.codec.http.HttpUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +26,7 @@ public  class BaseEndpoint {
     private static Logger logger= LoggerFactory.getLogger(BaseEndpoint.class);
     private AuthService authService=new AuthService();
     private PermissionServer permissionServer=new PermissionServer();
+    private UserService userService=new UserService();
    //protected Object doService()
     protected Object doService(String token,Object service,String methodName,String path,Object... parameters) throws Exception {
         Object result=null;
@@ -42,8 +43,16 @@ public  class BaseEndpoint {
             }
             else {
               String username= (String) tokenInfo.get("id");
-              String permissionUnfo=permissionServer.checkUserPermission(username,path);
-             if(StringUtils.isNotEmpty(permissionUnfo)){
+             UserPojo userInfo=userService.getUser(username);
+              if(userInfo==null){ //如果用户不存在 则 告诉前端进行补录
+                  Map data=new HashMap<>();
+                  data.put("code","401");
+                  data.put("msg","user not exist on market");
+                  return  data;
+              }
+             // String    permissionUnfo=permissionServer.checkUserPermission(username,path);
+           //  if(StringUtils.isNotEmpty(permissionUnfo)){
+                if(permissionServer.checkUserResource(username,path)){
                  Method [] methods =serviceClass.getMethods();
                  for(int i=0;i<methods.length;i++){
                      Method method=methods[i];

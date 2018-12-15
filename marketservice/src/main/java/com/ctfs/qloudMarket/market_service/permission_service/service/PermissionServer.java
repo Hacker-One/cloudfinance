@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -47,6 +48,26 @@ public class PermissionServer  extends BaseService {
         return userSourcePojos;
     }
 
+
+
+    public boolean checkUserResource(String userId,String source) throws SQLException {
+        logger.info("getUserResource................");
+       boolean rs=false;
+        Connection connection=null;
+        try {
+            connection=this.getConnection();
+            int r=permissionDao.queryUserSource(connection,userId,source);
+            rs=  r>0?true:false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(connection!=null){
+                connection.close();
+            }
+        }
+        return rs;
+    }
+
     public void writeAllUserResource() throws Exception {
         logger.info("writeAllUserResource................");
         Jedis jedis=RedisPool.getInstance().getResource();
@@ -60,12 +81,12 @@ public class PermissionServer  extends BaseService {
     }
 
 
-    public String checkUserPermission(String userId,String source){
+    public String checkUserPermission(String userId,String source) throws URISyntaxException {
         logger.info("checkUserPermission................");
         Jedis jedis=RedisPool.getInstance().getResource();
         StringBuffer sbKey=new StringBuffer(userId).append("_<").append(source).append(">");
+        logger.info("\nkey:{}",sbKey);
         return jedis.get(sbKey.toString());
     }
-
 
 }

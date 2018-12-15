@@ -70,6 +70,21 @@ public class AccountService   extends BaseService {
     }
 
 
+    public Map<String,Object> getAccountById(String id) throws Exception {
+        Map result=new HashMap();
+        AccountPojo accountPojo= getAccount(id);
+        if(accountPojo!=null){
+            Map data= JacksonUtils.json2map(JacksonUtils.obj2json(accountPojo));
+            result.put("code","000");
+            result.put("msg","succeed");
+            result.put("data",data);
+        }else {
+            result.put("code","002");
+            result.put("msg","error");
+        }
+        return result;
+    }
+
     public AccountPojo getAccount(String id) throws Exception {
         logger.info("getAccount:{}",id);
         AccountPojo result=null;
@@ -88,19 +103,22 @@ public class AccountService   extends BaseService {
         return result;
     }
 
-    public Map<String,List> getAccountProducts(String id) throws Exception {
+    public Map<String,Object> getAccountProducts(String id) throws Exception {
         logger.info("getAccount:{}",id);
-        Map<String,List> result=null;
+        Map<String,Object> result=null;
         Connection conn=null;
         result=new HashMap<>();
         try {
             conn=this.getConnection();
-
             List<ProductPojo> products=accountDao.queryRecommandProduct(conn,id);
             List<ProductTagPojo>  tags= accountDao.queryRecommandProductTags(conn,id);
+            result.put("code","000");
+            result.put("msg","succeed");
             if(products!=null&&products.size()>0) {
-                result.put("products", products);
-                result.put("tags", tags);
+                Map<String,Object> data=new HashMap<>();
+                data.put("products", products);
+                data.put("tags", tags);
+                result.put("data",data);
             }
         } catch (Exception e) {
             logger.info("error:{}",e.getStackTrace());

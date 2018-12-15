@@ -26,7 +26,8 @@ public class PermissionDao {
     private static Logger logger = LoggerFactory.getLogger(PermissionDao.class);
 
     private static final String QUERY_ALL_SOURCE="select a.account_id,a.id,c.role_id,c.source,c.source_type from tb_user a,tb_user_role b ,tb_source c where  a.id=b.user_id and b.role_id=c.role_id and a.status='N' and b.status='N' and c.status='N' ";
-    /**
+    private static final String QUERY_SOURCE="select count(1) from tb_user a,tb_user_role b ,tb_source c where  a.id=b.user_id and b.role_id=c.role_id and a.status='N' and b.status='N' and c.status='N' and a.id=? and c.source=? ";
+   /**
      * query all user source
      * @param conn
      * @return
@@ -50,6 +51,37 @@ public class PermissionDao {
                 data.setSource(rs.getString("source"));
                 data.setSourceType(rs.getString("source_type"));
                 result.add(data);
+            }
+            logger.info("operate result:{}", result);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (rs != null)
+                rs.close();
+            if (pstmt != null)
+                pstmt.close();
+        }
+        return result;
+    }
+
+
+    public int queryUserSource(Connection conn,String id,String source) throws SQLException {
+        int result=0;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        StringBuffer sb=new StringBuffer(QUERY_SOURCE);
+        try {
+            logger.info("queryAllUserSource sql:{}",sb);
+            pstmt = conn.prepareStatement(sb.toString());
+            pstmt.setString(1,id);
+            pstmt.setString(2,source);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                result=rs.getInt(1);
             }
             logger.info("operate result:{}", result);
         } catch (SQLException e) {

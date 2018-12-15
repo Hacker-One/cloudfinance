@@ -1,5 +1,6 @@
 package com.ctfs.qloudMarket.market_service.health_check;
 
+import com.ctfs.qloudMarket.market_service.permission_service.service.PermissionServer;
 import com.qloudfin.qloudbus.annotation.RequestMapping;
 import com.qloudfin.qloudbus.annotation.RequestMethod;
 import com.qloudfin.qloudbus.reactive.Callback;
@@ -23,13 +24,18 @@ import java.util.Map;
 @RequestMapping("/")
 public class HealthCheckEndpoint {
     private static Logger logger= LoggerFactory.getLogger(HealthCheckEndpoint.class);
+    private PermissionServer permissionServer=new PermissionServer();
     @RequestMapping(value = "/health", method = RequestMethod.GET)
     public void addArtifact(final Callback<Map> callback ) {
       //  ServiceEndpointServer serviceEndpointServer=null;
-
-        Map res=new HashMap();
-        res.put("version","1.0");
-        res.put("name","market_service");
-        callback.accept(res);
+        try {
+          //  permissionServer.writeAllUserResource();
+            Map res=new HashMap();
+            res.put("version","1.0");
+            res.put("name","market_service");
+            callback.accept(res);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

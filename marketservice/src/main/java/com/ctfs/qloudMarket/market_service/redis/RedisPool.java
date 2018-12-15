@@ -6,6 +6,9 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Ambitious Chen
@@ -18,11 +21,12 @@ public class RedisPool {
     private static  RedisPool instance;
     private JedisPool pool;
    // private JedisPoolConfig config;
-    private RedisPool(){
+    private RedisPool() throws URISyntaxException {
       //  config=new JedisPoolConfig();
+      //  pool=new JedisPool(new GenericObjectPoolConfig(),new URI(Common.getPropertiesKey(Common.REDIS_URI)),Integer.parseInt(Common.getPropertiesKey(Common.REDIS_TIMEOUT)));
         pool=new JedisPool(new GenericObjectPoolConfig(), Common.getPropertiesKey(Common.REDIS_HOST),Integer.parseInt(Common.getPropertiesKey(Common.REDIS_PORT)),Integer.parseInt(Common.getPropertiesKey(Common.REDIS_TIMEOUT)));
     }
-    public static RedisPool getInstance(){
+    public static RedisPool getInstance() throws URISyntaxException {
         if(instance==null){
             instance=new RedisPool();
         }

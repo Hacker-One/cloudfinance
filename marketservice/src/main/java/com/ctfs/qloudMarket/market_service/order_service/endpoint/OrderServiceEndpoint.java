@@ -3,7 +3,9 @@ package com.ctfs.qloudMarket.market_service.order_service.endpoint;
 import com.ctfs.qloudMarket.market_service.order_service.pojo.Order;
 import com.ctfs.qloudMarket.market_service.order_service.pojo.OrderPojo;
 import com.ctfs.qloudMarket.market_service.order_service.service.OrderService;
+import com.ctfs.qloudMarket.market_service.util.BaseEndpoint;
 import com.ctfs.qloudMarket.market_service.util.JacksonUtils;
+import com.qloudfin.qloudbus.annotation.HeaderParam;
 import com.qloudfin.qloudbus.annotation.PathVariable;
 import com.qloudfin.qloudbus.annotation.RequestMapping;
 import com.qloudfin.qloudbus.annotation.RequestMethod;
@@ -30,7 +32,7 @@ import java.util.Map;
  */
 @Slf4j
 @RequestMapping("/")
-public class OrderServiceEndpoint {
+public class OrderServiceEndpoint extends BaseEndpoint {
     private static Logger logger = LoggerFactory.getLogger(OrderServiceEndpoint.class);
     private OrderService orderService = new OrderService();
 
@@ -60,12 +62,14 @@ public class OrderServiceEndpoint {
 //        }
 //        callback.accept(data);
 //    }
+
     @RequestMapping(value = "/orders", method = RequestMethod.POST)
-    public void addOrder(final Callback<Map> callback, final Map<String, Object> requestBody) {
-        logger.info("addOrder:{}", requestBody);
+    public void addOrder(final Callback<Map> callback, final Map<String, Object> requestBody,@HeaderParam("X-Qloud-Token") String token) {
+        logger.info("token {} addOrder:{}",token, requestBody);
         Map result = new HashMap();
         try {
-            result = orderService.orderCreater2(requestBody);
+            result = (Map) this.doService(token,orderService,"orderCreater2","POST /orders",requestBody);
+          //  result = orderService.orderCreater2(requestBody);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("error:{}", e.getStackTrace());
@@ -82,24 +86,12 @@ public class OrderServiceEndpoint {
 
 
     @RequestMapping(value = "/orders/{id}", method = RequestMethod.POST)
-    public void updateOrder(final Callback<Map> callback, @PathVariable("id") String id, final Map<String, Object> requestBody) {
-        logger.info("updateOrder:{}", requestBody);
+    public void updateOrder(final Callback<Map> callback, @PathVariable("id") String id, final Map<String, Object> requestBody,@HeaderParam("X-Qloud-Token") String token) {
+        logger.info("token {} updateOrder:{}",token,requestBody);
         Map result = new HashMap();
         try {
-            String msg = (String) requestBody.get("msg");
-            String data = JacksonUtils.mapToJson((Map)requestBody.get("data"));
-            if (StringUtils.isNotEmpty(id) && requestBody != null) {
-                if (orderService.updateOrderStatus(id, data, msg)) {
-                    result.put("code", "000");
-                    result.put("msg", "success");
-                } else {
-                    result.put("code", "003");
-                    result.put("msg", "update status error");
-                }
-            }else {
-                result.put("code", "002");
-                result.put("msg", "parameter error");
-            }
+            result = (Map) this.doService(token,orderService,"updateOrderStatusInfo","POST /orders/*",id,requestBody);
+         //result= orderService.updateOrderStatusInfo(id,requestBody);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("error:{}", e.getStackTrace());
@@ -111,19 +103,11 @@ public class OrderServiceEndpoint {
     }
 
     @RequestMapping(value = "/orders/{id}", method = RequestMethod.GET)
-    public void getOrder(final Callback<Map> callback, @PathVariable("id") String id) {
-        logger.info("getOrder:{}", id);
+    public void getOrder(final Callback<Map> callback, @PathVariable("id") String id,@HeaderParam("X-Qloud-Token") String token) {
+        logger.info("\n token {} getOrder:{}",token, id);
         Map result = new HashMap();
         try {
-            OrderPojo orderPojo = orderService.getOrder(id);
-            if (orderPojo != null) {
-                result.put("code", "000");
-                result.put("msg", "succeed");
-                result.put("data", orderPojo);
-            } else {
-                result.put("code", "002");
-                result.put("msg", "error");
-            }
+            result = (Map) this.doService(token,orderService,"getOrderService","GET /orders/*",id,id);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("error:{}", e.getStackTrace());
@@ -141,14 +125,11 @@ public class OrderServiceEndpoint {
      * @param product
      */
     @RequestMapping(value = "/orders/{account}/{product}", method = RequestMethod.GET)
-    public void getOrderByAccountAndProduct(final Callback<Map> callback, @PathVariable("account") String account,@PathVariable("product") String product) {
-        logger.info("getOrderByAccountAndProduct:{},{}", account,product);
+    public void getOrderByAccountAndProduct(final Callback<Map> callback, @PathVariable("account") String account,@PathVariable("product") String product,@HeaderParam("X-Qloud-Token") String token) {
+        logger.info("\n token {}getOrderByAccountAndProduct:{},{}",token,account,product);
         Map result = new HashMap();
         try {
-            OrderPojo orderPojo = orderService.getValidOrder(account,product);
-            result.put("code", "000");
-            result.put("msg", "succeed");
-            result.put("data", orderPojo);
+            result = (Map) this.doService(token,orderService,"getValidOrderService","GET /orders/*/*",account,product);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("error:{}", e.getStackTrace());
@@ -159,19 +140,11 @@ public class OrderServiceEndpoint {
     }
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
-    public void getOrders(final Callback<Map> callback, @RequestParam("accountId") String accountId, @RequestParam("start") int start, @RequestParam("count") int count) {
+    public void getOrders(final Callback<Map> callback, @RequestParam("accountId") String accountId, @RequestParam("start") int start, @RequestParam("count") int count,@HeaderParam("X-Qloud-Token") String token) {
         logger.info("getOrders:{} ,{},{}", accountId, start, count);
         Map result = new HashMap();
         try {
-            Map<String, Object> orderPojo = orderService.getOrders(accountId, start, count);
-            if (orderPojo != null && orderPojo.size() > 0) {
-                result.put("code", "000");
-                result.put("msg", "succeed");
-                result.put("data", orderPojo);
-            } else {
-                result.put("code", "002");
-                result.put("msg", "error");
-            }
+            result = (Map) this.doService(token,orderService,"getOrderList","GET /orders ",accountId,start,count);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("error:{}", e.getStackTrace());

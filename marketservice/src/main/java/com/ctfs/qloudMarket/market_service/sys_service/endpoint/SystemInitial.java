@@ -48,7 +48,7 @@ public class SystemInitial {
                 "                   不见满街漂亮妹，哪个归得程序员？\n" +
                 "           --------------------- ");
         logger.info("initial user permission");
-        permissionServer.writeAllUserResource();
+       // permissionServer.writeAllUserResource();
 
     }
 }

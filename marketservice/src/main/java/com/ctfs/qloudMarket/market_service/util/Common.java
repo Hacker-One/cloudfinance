@@ -27,6 +27,7 @@ public class Common {
     public static final String PURCHASR_EVENT_TOP_KEY="marketAgent.purchaseEvent.topic";
     public static final String CHART_ADDRESS="chartAddress";
     public static final String AUTH_BASE_URL="authBaseAddress";
+    public static final String AUTH_APIKEY_KEY="auth_apiKey";
 
     public static final String AUTH_USER_PATH="/users";
     public static final String AUTH_TOKEN_PATH="/token";
@@ -35,6 +36,7 @@ public class Common {
     public static final String API_GATEWAY_ADD_KEY="api_gateway_address";
     public static final String REDIS_HOST="redis_host";
     public static final String REDIS_PORT="redis_port";
+    public static final String REDIS_URI="redis_uri";
     public static final String REDIS_TIMEOUT="redis_timeout";
 
     public static final String SAMPLE_ENVIROMENT_DEPLOYER_ADDRESS_KEY="sample_enviroment_deployer_address";

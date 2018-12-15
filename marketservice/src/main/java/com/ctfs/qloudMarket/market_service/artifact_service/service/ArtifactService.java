@@ -146,6 +146,28 @@ public class ArtifactService   extends BaseService {
     }
 
 
+    public int checkAccountArtifactPermissionUid(String userId,String url,String typeName) throws SQLException {
+        int result=0;
+        Connection conn=null;
+        try {
+            conn=this.getConnection();
+            ArtifactTypePojo typePojo= artifactTypeDao.queryArtifactTypeByName(conn,typeName);
+            if(typePojo!=null){
+
+                result= artifactInfoDao.queryArtifactPermissionUid(conn,url,typePojo.getId(),userId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("error:{}",e.getStackTrace());
+        }finally {
+            if(conn!=null)
+                conn.close();
+        }
+
+        return result;
+    }
+
+
 
 
 

@@ -89,6 +89,14 @@ public class OrderService extends BaseService {
     }
 
 
+    public Map getOrderService(String orderId) throws Exception {
+        Map result=new HashMap();
+        OrderPojo orderPojo = getOrder(orderId);
+        result.put("code", "000");
+        result.put("msg", "succeed");
+        result.put("data", orderPojo);
+        return result;
+    }
 
     public OrderPojo getOrder(String orderId) throws Exception {
         Connection conn=null;
@@ -125,6 +133,18 @@ public class OrderService extends BaseService {
         return result;
     }
 
+
+
+    public Map<String,Object> getValidOrderService(String account,String product) throws Exception {
+        Map<String,Object> result=new HashMap<>();
+        OrderPojo orderPojo =getValidOrder(account,product);
+        result.put("code", "000");
+        result.put("msg", "succeed");
+        result.put("data", orderPojo);
+        return result;
+    }
+
+
     /**
      * 查询一个证书有效的订单
      * @param account
@@ -146,6 +166,17 @@ public class OrderService extends BaseService {
             if(conn!=null)
                 conn.close();
         }
+        return result;
+    }
+
+
+
+    public Map<String,Object> getOrderList(String accountId,int begin,int count) throws Exception {
+        Map<String,Object> result=new HashMap<>();
+        Map<String, Object> orderPojo = getOrders(accountId, begin, count);
+            result.put("code", "000");
+            result.put("msg", "succeed");
+            result.put("data", orderPojo);
         return result;
     }
 
@@ -338,12 +369,14 @@ public class OrderService extends BaseService {
         Map result=new HashMap();
         if(licensePojo!=null) {
             if(licensePojo.isDeploy()) {
+                licensePojo.setPcode(pojo.getPurchaseCode());
                 licensePojo.setAccount(accountId);
                 licensePojo.setProduct(productId);
+                licensePojo.setCreateDate(DateUtils.getCurrentDateTime());
                 if (updateOrderLicense(pojo.getId(), licensePojo)) {
                     if (StringUtils.isNotEmpty(accountPojo.getHook())) {
                         logger.info("\n notify deployer");
-                       // result = notifyOrder(pojo.getId(), accountPojo.getHook());
+                        result = notifyOrder(pojo.getId(), accountPojo.getHook());
                     } else {
                         result.put("code", "000");
                         result.put("msg", "订单成功，请手动进行商品下载。");
@@ -448,10 +481,8 @@ public class OrderService extends BaseService {
                             result = deployerOrder(pojo,accountPojo,licensePojo);
                         } else {
                             logger.info("old order exist notify deployer");
-                            //  result = notifyOrder(pojo.getId(), accountPojo.getHook());//如果是第二次部署则走这个流程
+                            result = notifyOrder(pojo.getId(), accountPojo.getHook());//如果是第二次部署则走这个流程
                         }
-
-
                     }
                 }else {
                     result.put("code","203");
@@ -477,16 +508,11 @@ public class OrderService extends BaseService {
         int r=0;
         try {
             conn = this.getConnection();
-//            LicensePojo old=  licenseInfoDao.getLicense(conn,licensePojo.getProduct(),licensePojo.getAccount());
-//            if(old==null) {
                 r = licenseInfoDao.putLicense(conn, licensePojo);
                 if (r > 0) {
-                    licensePojo = licenseInfoDao.getLicense(conn, licensePojo.getProduct(), licensePojo.getAccount());
+                    licensePojo = licenseInfoDao.getLicenseByPcode(conn, licensePojo.getPcode());
                     r += orderDao.addLicense(conn, licensePojo.getId(), "paid", orderId);
                 }
-//            }else{
-//                r=2;
-//            }
             conn.commit();
             result=  r>1?true:false;
         } catch (Exception e) {
@@ -576,6 +602,25 @@ public class OrderService extends BaseService {
         return result;
     }
 
+
+    public Map<String,Object> updateOrderStatusInfo(String id,Map requestBody) throws Exception {
+        String msg = (String) requestBody.get("msg");
+        Map result = new HashMap();
+        String data = JacksonUtils.mapToJson((Map)requestBody.get("data"));
+        if (org.apache.commons.lang.StringUtils.isNotEmpty(id) && requestBody != null) {
+            if (updateOrderStatus(id, data, msg)) {
+                result.put("code", "000");
+                result.put("msg", "success");
+            } else {
+                result.put("code", "003");
+                result.put("msg", "update status error");
+            }
+        }else {
+            result.put("code", "002");
+            result.put("msg", "parameter error");
+        }
+        return result;
+    }
 
 
     public boolean updateOrderStatus(String orderId,String deployInfo,String status) throws Exception {

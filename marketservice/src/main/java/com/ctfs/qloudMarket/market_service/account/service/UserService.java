@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import com.qloudfin.qloudbus.sdk.server.QloudServiceServer;
 
 import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 /**
@@ -40,16 +42,16 @@ public class UserService extends BaseService {
         logger.info("addAccount:{}",user);
         int result=0;
         UserPojo userPojo= JacksonUtils.map2pojo(user,UserPojo.class);
-        userPojo.setPwd(md5.getMD5ofStr(userPojo.getPwd()));
-
+        userPojo.setPwd(userPojo.getPwd());
         Connection conn=null;
         try {
             conn=this.getConnection();
-            result=userDao.addUser(conn,userPojo);
-            conn.commit();
             if(addAuthUser(userPojo)){
-               result=-1;
+                userPojo.setPwd(md5.getMD5ofStr(userPojo.getPwd()));
+                result=userDao.addUser(conn,userPojo);
+
             }
+            conn.commit();
         } catch (Exception e) {
             logger.info("error:{}",e.getStackTrace());
             throw  e;
@@ -75,6 +77,17 @@ public class UserService extends BaseService {
       return result;
    }
 
+   public Map<String,Object> checkUserAccount(String userid) throws Exception {
+       Map result=new HashMap();
+       AccountPojo accountPojo=  getAccountByUser(userid);
+           //   Map data= JacksonUtils.json2map(JacksonUtils.obj2json(accountPojo));
+           result.put("code","000");
+           result.put("msg","succeed");
+           result.put("data",accountPojo);
+       return result;
+   }
+
+
     public AccountPojo getAccountByUser(String id) throws Exception {
         logger.info("getAccount:{}",id);
         AccountPojo result=null;
@@ -94,14 +107,44 @@ public class UserService extends BaseService {
     }
 
 
-    public UserPojo userLogin(String id,String pwd) throws Exception {
-        logger.info("getAccount:{}",id);
-        UserPojo result=null;
+
+    public UserPojo getUser(String id) throws Exception {
+        logger.info("getUser:{}",id);
+        UserPojo userPojo=null;
         Connection conn=null;
         try {
             conn=this.getConnection();
-            pwd= md5.getMD5ofStr(pwd);
-            result=userDao.userLogin(conn,id,pwd);
+            userPojo=userDao.userLogin(conn,id);
+        } catch (Exception e) {
+            logger.info("error:{}",e.getStackTrace());
+            throw  e;
+        } finally {
+            if(conn!=null) {
+                conn.close();
+            }
+        }
+        return userPojo;
+    }
+
+
+    public Map userLogin(String id,String pwd) throws Exception {
+        logger.info("getAccount:{}",id);
+        Map result=new HashMap();
+        UserPojo userPojo=null;
+        Connection conn=null;
+        try {
+            conn=this.getConnection();
+            userPojo=userDao.userLogin(conn,id);
+            AuthUser authUser=new AuthUser();
+            authUser.setId(id);
+            authUser.setPassword(pwd);
+            if(userPojo!=null) {
+                Map loginRs = authService.getLoginToken(authUser);
+                if(loginRs!=null&&"ok".equals(((String) loginRs.get("status")).toLowerCase())){
+                    result.put("user",userPojo);
+                    result.put("access_token",loginRs.get("access_token"));
+                }
+            }
         } catch (Exception e) {
             logger.info("error:{}",e.getStackTrace());
             throw  e;

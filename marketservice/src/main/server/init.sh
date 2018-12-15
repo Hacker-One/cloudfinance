@@ -21,9 +21,21 @@ cat > $DATA_SOURCE_FILE  <<EOF
 EOF
 
 cat > $SERVER_CONFIG_FILE  <<EOF
-
+            # chart museum address
 	        chartAddress=${CHART_ADDRESS}
+	        # api gateway address
             api_gateway_address=${APIGATEWAY_ADDRESS}
+            # api auth address
+            authBaseAddress=${AUTH_ADDRESS}
+            # redishost
+            redis_host=${REDIS_HOST}
+            #redis port
+            redis_port=${REDIS_PORT}
+            # redis timeout
+            redis_timeout=${REDIS_TIMEOUT}
+            # mart trial area enviroment address
+            sample_enviroment_deployer_address=${EVN_TRY_DEP_ADR}
+            redis_uri=${REDIS_URI}
 EOF
 
 

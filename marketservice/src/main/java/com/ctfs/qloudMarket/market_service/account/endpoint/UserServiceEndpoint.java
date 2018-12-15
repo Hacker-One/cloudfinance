@@ -4,7 +4,9 @@ import com.ctfs.qloudMarket.market_service.account.pojo.AccountPojo;
 import com.ctfs.qloudMarket.market_service.account.service.UserService;
 import com.ctfs.qloudMarket.market_service.auth_service.pojo.AuthUser;
 import com.ctfs.qloudMarket.market_service.auth_service.service.AuthService;
+import com.ctfs.qloudMarket.market_service.util.BaseEndpoint;
 import com.ctfs.qloudMarket.market_service.util.JacksonUtils;
+import com.qloudfin.qloudbus.annotation.HeaderParam;
 import com.qloudfin.qloudbus.annotation.PathVariable;
 import com.qloudfin.qloudbus.annotation.RequestMapping;
 import com.qloudfin.qloudbus.annotation.RequestMethod;
@@ -26,10 +28,9 @@ import java.util.Map;
  */
 @Slf4j
 @RequestMapping("/")
-public class UserServiceEndpoint {
+public class UserServiceEndpoint  extends BaseEndpoint  {
     private static Logger logger= LoggerFactory.getLogger(UserServiceEndpoint.class);
     private UserService userService=new UserService();
-//    private AuthService authService=new AuthService();
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public void addUser(final Callback<Map> callback, final Map<String,Object>  requestBody){
@@ -53,19 +54,10 @@ public class UserServiceEndpoint {
     }
 
     @RequestMapping(value = "/users/{id}/accounts", method = RequestMethod.GET)
-    public void getAccount(final Callback<Map> callback,  @PathVariable("id") String id){
+    public void getAccount(final Callback<Map> callback,  @PathVariable("id") String id,@HeaderParam("X-Qloud-Token") String token){
         Map result=new HashMap();
         try {
-            AccountPojo accountPojo=  userService.getAccountByUser(id);
-            if(accountPojo!=null){
-             //   Map data= JacksonUtils.json2map(JacksonUtils.obj2json(accountPojo));
-                result.put("code","000");
-                result.put("msg","succeed");
-                result.put("data",accountPojo);
-            }else {
-                result.put("code","002");
-                result.put("msg","error");
-            }
+            result = (Map) this.doService(token,userService,"checkUserAccount","GET /users/*/accounts",id);
             callback.accept(result);
         } catch (Exception e) {
             logger.info("error:{}",e.getStackTrace());

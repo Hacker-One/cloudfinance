@@ -52,6 +52,7 @@ public class ArtifactInfoDao {
 
     private static String QUERY_ARTIFACT_PERMISSION="select count(1) as size from tb_artifact a,tb_order b where a.url=? and a.`status`='N' and a.artifact_type=? and b.account_id=? and b.order_status !='pending'  and a.product_id=b.product_id";
 
+    private  static String QUERY_ARTIFACT_PERMISSION_BYUID= "select count(1)  from tb_user a ,tb_artifact b,tb_order c where a.account_id=c.account_id and b.product_id=c.product_id and b.`status`='N' and c.order_status !='pending' and b.url=?  and b.artifact_type=? and a.id=? ";
 
     public int addArtifact(Connection connection,ArtifactPojo artifactPojo) throws SQLException {
         int result=0;
@@ -145,6 +146,37 @@ public class ArtifactInfoDao {
         return result;
     }
 
+
+    public int queryArtifactPermissionUid(Connection connection,String url,int id,String userId) throws SQLException {
+        int result=0;
+        PreparedStatement pstmt = null;
+        ResultSet rs=null;
+        try {
+
+            logger.info("sql:{}",QUERY_ARTIFACT_PERMISSION_BYUID);
+            pstmt = connection.prepareStatement(QUERY_ARTIFACT_PERMISSION_BYUID);
+            pstmt.setString(1, url);
+            pstmt.setInt(2, id);
+            pstmt.setString(3, userId);
+            rs =  pstmt.executeQuery();
+            while (rs.next()){
+                result=rs.getInt("size");
+            }
+            logger.info("result:{}",result);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw  e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw  e;
+        } finally {
+            if(rs!=null)
+                rs.close();
+            if (pstmt!=null)
+                pstmt.close();
+        }
+        return result;
+    }
 
 
     public int queryArtifactPermission(Connection connection,String url,int id,String accountId) throws SQLException {
