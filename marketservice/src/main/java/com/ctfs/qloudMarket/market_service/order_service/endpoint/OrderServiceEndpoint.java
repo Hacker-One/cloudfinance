@@ -107,7 +107,7 @@ public class OrderServiceEndpoint extends BaseEndpoint {
         logger.info("\n token {} getOrder:{}",token, id);
         Map result = new HashMap();
         try {
-            result = (Map) this.doService(token,orderService,"getOrderService","GET /orders/*",id,id);
+            result = (Map) this.doService(token,orderService,"getOrderService","GET /orders/*",id);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("error:{}", e.getStackTrace());

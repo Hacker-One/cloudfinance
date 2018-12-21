@@ -26,11 +26,11 @@ public class PermissionServiceEndPoint {
     private static Logger logger= LoggerFactory.getLogger(PermissionServiceEndPoint.class);
     private ArtifactService artifactService=new ArtifactService();
     @RequestMapping(value = "/permissions", method = RequestMethod.GET)
-    public void queryPermission(final Callback<Map<String,Object>> callback, @RequestParam("userid") String userid, @RequestParam("path") String path, @RequestParam("action") String action){
-        logger.info("queryPermission:userid:{},path:{},action{}",userid,path,action);
+    public void queryPermission(final Callback<Map<String,Object>> callback, @RequestParam("userid") String userid, @RequestParam("path") String path, @RequestParam("action") String action,@RequestParam("type") String type){
+        logger.info("queryPermission:userid:{},path:{},action:{},type:{}",userid,path,action,type);
         Map result=new HashMap();
         try {
-            int r=artifactService.checkAccountArtifactPermissionUid(userid,path,"docker");
+            int r=artifactService.checkAccountArtifactPermissionUid(userid,path,type);
             if(r>0){
 
                 result.put("status",new Boolean(true));
@@ -39,6 +39,7 @@ public class PermissionServiceEndPoint {
                 result.put("status",new Boolean(false));
                 callback.accept(result);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

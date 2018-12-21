@@ -160,7 +160,7 @@ public class ArtifactInfoDao {
             pstmt.setString(3, userId);
             rs =  pstmt.executeQuery();
             while (rs.next()){
-                result=rs.getInt("size");
+                result=rs.getInt(1);
             }
             logger.info("result:{}",result);
         } catch (SQLException e) {

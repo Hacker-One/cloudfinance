@@ -56,7 +56,9 @@ public  class BaseEndpoint {
                  Method [] methods =serviceClass.getMethods();
                  for(int i=0;i<methods.length;i++){
                      Method method=methods[i];
+                     logger.info("{}:",method.getName());
                      if(method.getName().equals(methodName)){
+                         logger.info("INVOKE :{}:",methodName);
                          result=  method.invoke(service,parameters);
                          logger.info("\n\n\n\n\n\n{}",result.getClass().getName());
                      }

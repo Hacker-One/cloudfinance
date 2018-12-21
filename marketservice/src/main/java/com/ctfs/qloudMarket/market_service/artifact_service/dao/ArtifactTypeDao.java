@@ -56,6 +56,7 @@ public class ArtifactTypeDao {
     }
 
     public ArtifactTypePojo queryArtifactTypeByName (Connection connection,String name) throws Exception {
+        logger.info("\nArtifactTypePojo:{}\n",name);
         PreparedStatement pstmt = null;
         ResultSet rs=null;
         ArtifactTypePojo result=null;

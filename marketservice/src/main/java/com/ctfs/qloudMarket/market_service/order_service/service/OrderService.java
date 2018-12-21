@@ -49,27 +49,22 @@ public class OrderService extends BaseService {
     private HTTPUtils httpUtils=new HTTPUtils();
     private static String SAMPLE_DEPLOYER_ADDRESS=Common.getPropertiesKey(Common.SAMPLE_ENVIROMENT_DEPLOYER_ADDRESS_KEY);
 
-    /**
-     * create order
-     * @param order
-     * @return
-     */
-    public int createOrder(Order order) throws Exception {
-        Connection conn=null;
-        int result=0;
-        try {
-            conn=this.getConnection();
-            result= orderDao.insertOrder(conn,order);
-            conn.commit();
-        }catch (Exception e){
-            logger.info(e.getLocalizedMessage());
-            throw  e;
-        }finally {
-            if(conn!=null)
-            conn.close();
-        }
-        return result;
-    }
+//    public int createOrder(Order order) throws Exception {
+//        Connection conn=null;
+//        int result=0;
+//        try {
+//            conn=this.getConnection();
+//            result= orderDao.insertOrder(conn,order);
+//            conn.commit();
+//        }catch (Exception e){
+//            logger.info(e.getLocalizedMessage());
+//            throw  e;
+//        }finally {
+//            if(conn!=null)
+//            conn.close();
+//        }
+//        return result;
+//    }
 
 
     public OrderPojo getOrderByPcode(String pcode) throws Exception {
@@ -90,6 +85,7 @@ public class OrderService extends BaseService {
 
 
     public Map getOrderService(String orderId) throws Exception {
+        logger.info("getOrderService :{}",orderId);
         Map result=new HashMap();
         OrderPojo orderPojo = getOrder(orderId);
         result.put("code", "000");
@@ -341,7 +337,8 @@ public class OrderService extends BaseService {
 
             }
             if(DeployType.tyBuy.getName().equals(orderPojo.getOrderType())) {
-                url = accountDao.queryAccountAddr(conn, accountId,orderPojo.getAddrId()); //非体验区从账户属性表中获取部署地址
+              //  url = accountDao.queryAccountAddr(conn, accountId,orderPojo.getAddrId()); //非体验区从账户属性表中获取部署地址
+                url = accountDao.queryAccountAddr(conn, accountId,"buy_addr");
             }
             orderPojo.setDeployAddr(url);
             accountPojo.setHook(url);
@@ -443,7 +440,7 @@ public class OrderService extends BaseService {
 
 
     public Map orderCreater2(Map order) throws Exception {
-
+        logger.info("orderCreater2 {}",order);
         OrderPojo orderPojo=  checkOrder(order);
         Map result=new HashMap();
         result.put("code","006");

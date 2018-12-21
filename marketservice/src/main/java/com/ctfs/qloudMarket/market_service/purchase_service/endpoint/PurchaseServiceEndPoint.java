@@ -80,30 +80,30 @@ public class PurchaseServiceEndPoint {
 //        client.close();
 //    }
 
-    @RequestMapping(value = "/purchase", method = RequestMethod.POST)
-    public void purchaseTest(final Callback<Map> callback, final Map<String, Object> data) {
-        logger.info("request Data: {}",data);
-        Map result=new HashMap();
-        try {
-            result.put("code","000");
-            result.put("msg","succeed");
-         //   Map data=JacksonUtils.json2map(datainfo);
-            if (checkRequestInfo(data)){
-                Order order=wrapOrder(data);
-                orderService.createOrder(order);
-            } else {
-                throw new QLoudException("A002", "Input message is null!");
-            }
-        } catch (Exception e) {
-
-            logger.info("EXCEPTION: {}",e.getMessage());
-            result.put("code","101");
-            result.put("msg","faild");
-            callback.accept(result);
-
-        }
-        callback.accept(result);
-    }
+//    @RequestMapping(value = "/purchase", method = RequestMethod.POST)
+//    public void purchaseTest(final Callback<Map> callback, final Map<String, Object> data) {
+//        logger.info("request Data: {}",data);
+//        Map result=new HashMap();
+//        try {
+//            result.put("code","000");
+//            result.put("msg","succeed");
+//         //   Map data=JacksonUtils.json2map(datainfo);
+//            if (checkRequestInfo(data)){
+//                Order order=wrapOrder(data);
+//                orderService.createOrder(order);
+//            } else {
+//                throw new QLoudException("A002", "Input message is null!");
+//            }
+//        } catch (Exception e) {
+//
+//            logger.info("EXCEPTION: {}",e.getMessage());
+//            result.put("code","101");
+//            result.put("msg","faild");
+//            callback.accept(result);
+//
+//        }
+//        callback.accept(result);
+//    }
 
     /**
      * @param callback
@@ -197,24 +197,24 @@ public class PurchaseServiceEndPoint {
         return result;
     }
 
-    @OnEvent(KafkaTopics.PURCHASE_EVENT_TOPIC)
-    public void purchaseComsumer(final Consumer<Boolean> consumer, String key, String value, final String datainfo) {
-
-        try {
-            Map data=JacksonUtils.json2map(datainfo);
-            if (checkRequestInfo(data)){
-                Order order=wrapOrder(data);
-                orderService.createOrder(order);
-                consumer.accept(true);
-            } else {
-                throw new QLoudException("A002", "Input message is null!");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            consumer.accept(false);
-
-        }
-    }
+//    @OnEvent(KafkaTopics.PURCHASE_EVENT_TOPIC)
+//    public void purchaseComsumer(final Consumer<Boolean> consumer, String key, String value, final String datainfo) {
+//
+//        try {
+//            Map data=JacksonUtils.json2map(datainfo);
+//            if (checkRequestInfo(data)){
+//                Order order=wrapOrder(data);
+//                orderService.createOrder(order);
+//                consumer.accept(true);
+//            } else {
+//                throw new QLoudException("A002", "Input message is null!");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            consumer.accept(false);
+//
+//        }
+//    }
 
     /**
      * 封装order
