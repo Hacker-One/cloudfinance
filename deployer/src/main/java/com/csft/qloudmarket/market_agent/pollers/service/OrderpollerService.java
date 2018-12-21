@@ -100,7 +100,7 @@ public class OrderpollerService {
 
 
 
-    public Map purchaseNotify2(String orderId) {
+    public Map purchaseNotify2(String orderId,Map<String,String> header) {
         logger.info("purchaseNotify2! {}",orderId);
         Map result =  new HashMap();
          Map logData=new HashMap();
@@ -108,15 +108,14 @@ public class OrderpollerService {
         String info="{\"saved\":false}";
         //need login and get accountId
         try {
-         OrderPojo orderPojo=requestOrder(orderId);
-         Map header=getNexusToken();
+        // OrderPojo orderPojo=requestOrder(orderId);
 
-         //  if(orderPojo!=null){
-
-         if(orderPojo!=null&& header!=null){
-
+            OrderPojo orderPojo=  requestOrderAPI(orderId,header);
+            Map nexusToken=getNexusToken();
+         if(orderPojo!=null&& nexusToken!=null){
+           // nexusToken=new HashMap();
              logData.put("orderInfo",orderPojo);
-
+            logger.info(" \n order {}\nnexus Token {}",orderPojo,nexusToken);
             String accountId= orderPojo.getAccountId();
             String productId= orderPojo.getProductId();
            List<ArtifactPojo> artifacts= productService.getArtifacts(productId);
@@ -126,7 +125,7 @@ public class OrderpollerService {
                    if (Common.MA_COMMON_ARTIFACT_TYPE_DOCKER.equals(typeName)) {
                        String tag = artifactPojo.getTag();
                        logger.info("{}SSSS{}", artifactPojo.getUrl(), tag);
-                       JSONObject imageOper = registryAccessService.imagePurchaseProgressNexus(artifactPojo.getUrl(),tag,header); //购买后触发image 文件上传
+                       JSONObject imageOper = registryAccessService.imagePurchaseProgressNexus(artifactPojo.getUrl(),tag,nexusToken); //购买后触发image 文件上传
                        logger.info("image operating  over result Info: {}\n", imageOper);
 
                        logData.put("reg_" + artifactPojo.getUrl() + "_" + tag, imageOper);
@@ -270,6 +269,28 @@ public class OrderpollerService {
         return rs;
     }
 
+
+    public OrderPojo requestOrderAPI(String orderId,Map header) throws Exception {
+        logger.info("begin queryOrder");
+
+        OrderPojo rs = null;
+        String info=queryOrderAPI(orderId,header);
+        logger.info("\n data: {}",info);
+        Map order= JacksonUtils.json2map(info);
+        String status= (String) order.get("code");
+        if("000".equals(status)){
+            Map data= (Map) order.get("data");
+            if(data!=null){
+                OrderPojo orderPojo= JacksonUtils.map2pojo(data,OrderPojo.class);
+                if(checkOrderData(orderPojo)){
+                    rs=orderPojo;
+                }
+            }
+        }
+        logger.info("check order");
+        return rs;
+    }
+
     private boolean checkOrderData(OrderPojo orderPojo){
        boolean result=false;
        if(orderPojo!=null){
@@ -296,8 +317,19 @@ public class OrderpollerService {
         return result;
     }
 
+    public String queryOrderAPI(String id,Map Header) throws Exception {
+        String result=null;
+        StringBuffer address=new StringBuffer(Common.getPropertiesKey(Common.MA_COMMON_MARKETADDRESS));
+        address.append(Common.MA_COMMON_API_ORDER).append(id);
+        String url= address.toString();
+        logger.info("\n\n {}",url);
+        result=  httpUtils.httpsRequest(url,HTTPUtils.METHOD_GET,Header,null);
+        return result;
+    }
 
-    public void notifyServer(String id,Map data) throws Exception {
+
+    public void notifyServer(String id,Map<String,String> header,Map data) throws Exception {
+        logger.info("\n\nnotifyServer:{}\n{}",header,data);
        boolean r= (boolean)data.get("succeed");
         StringBuffer address=new StringBuffer(Common.getPropertiesKey(Common.MA_COMMON_MARKETADDRESS));
         address.append(Common.MA_COMMON_API_ORDER).append(id);
@@ -313,16 +345,27 @@ public class OrderpollerService {
            sended.put("data",data);
        }
         String sendstr=JacksonUtils.mapToJson(sended);
-        result=  httpUtils.sendJsonBody(url,HTTPUtils.METHOD_POST,sendstr.getBytes("utf-8"));
+        result=  httpUtils.sendJsonBodyAPI(url,HTTPUtils.METHOD_POST,header,sendstr.getBytes("utf-8"));
         logger.info("result:",result);
     }
 
-    private Map getNexusToken() throws Exception {
+    public Map getNexusToken() throws Exception {
         Map tokenInfo=  registryAccessService.getNexusRequestToken(Common.getPropertiesKey(Common.MARKET_USERNAME),Common.getPropertiesKey(Common.MARKET_PWD));
         Map requestHeader=null;
         if(tokenInfo!=null&&"ok".equals(((String) tokenInfo.get("status")).toLowerCase())){
             requestHeader=new HashMap();
             requestHeader.put("X-Market-Token",tokenInfo.get("access_token"));
+        }
+        return requestHeader;
+    }
+
+    public Map getRequestToken()throws Exception {
+        Map tokenInfo=  registryAccessService.getNexusRequestToken(Common.getPropertiesKey(Common.MARKET_USERNAME),Common.getPropertiesKey(Common.MARKET_PWD));
+        Map requestHeader=null;
+        if(tokenInfo!=null&&"ok".equals(((String) tokenInfo.get("status")).toLowerCase())){
+            requestHeader=new HashMap();
+            requestHeader.put("Authorization","Bearer "+tokenInfo.get("access_token"));
+            requestHeader.put("apikey",Common.getPropertiesKey(Common.AUTH_APIKEY_KEY));
         }
         return requestHeader;
     }

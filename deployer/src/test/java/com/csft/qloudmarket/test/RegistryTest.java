@@ -43,7 +43,7 @@ public class RegistryTest {
                 requestHeader=new HashMap();
                 requestHeader.put("X-Market-Token",tokenInfo.get("access_token"));
             }
-            JSONObject imageOper= registryAccessService.imagePurchaseProgressNexus("redis","latest",requestHeader);
+            JSONObject imageOper= registryAccessService.imagePurchaseProgressNexus("qloudpaas/alpine-curl-jq","latest",requestHeader);
             logger.info("ssimage operating  over result Info: {}\n", imageOper);
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +65,8 @@ public class RegistryTest {
         data.put("succeed",true);
         data.put("data","1232321321test");
         try {
-            orderpollerService.notifyServer("2a1c298d-02b8-4701-9653-0f57a15f4551",data);
+             Map header=  orderpollerService.getRequestToken();
+            orderpollerService.purchaseNotify2("b2b330b4-d2ac-4a11-bcc9-b4649b2118ce",header);
         } catch (Exception e) {
             e.printStackTrace();
         }

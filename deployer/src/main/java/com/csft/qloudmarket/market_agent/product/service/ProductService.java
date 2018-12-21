@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -73,7 +74,9 @@ public class ProductService {
         StringBuffer address=new StringBuffer(Common.getPropertiesKey(Common.MA_COMMON_MARKETADDRESS));
         address.append(Common.MA_COMMON_API_PRODUCT).append(productId).append(Common.MA_COMMON_API_PRODUCT_ARTIFACT);
         String url= address.toString();
-        result=  httpUtils.get(url,null,null);
+        Map header=new HashMap();
+        header.put(HTTPUtils.API_KEY,Common.getPropertiesKey(Common.AUTH_APIKEY_KEY));
+        result=  httpUtils.httpsRequest(url,HTTPUtils.METHOD_GET,header,null);
         return result;
     }
 }

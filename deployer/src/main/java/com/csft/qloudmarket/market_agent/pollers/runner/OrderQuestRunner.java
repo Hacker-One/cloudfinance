@@ -40,8 +40,9 @@ public class OrderQuestRunner implements IAgentRunner {
         try {
             logger.info("{} begin ",name);
             workerStatus="R";
-           Map r= orderpollerService.purchaseNotify2(name);
-            orderpollerService.notifyServer(name,r);
+            Map header=orderpollerService.getRequestToken();
+            Map r= orderpollerService.purchaseNotify2(name,header);
+            orderpollerService.notifyServer(name,header,r);
             // Thread.sleep(30*1000);
             setWorkerStatus("X");
             logger.info("execute OVER {} \n",r);

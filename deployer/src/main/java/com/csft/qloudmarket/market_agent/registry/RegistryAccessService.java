@@ -150,7 +150,7 @@ public class RegistryAccessService {
         result.put("type","registry");
         result.put("name",name+":"+tag);
         // try {
-        logger.info("...........................................imagePurchaseProgress {}. {}",name,tag);
+        logger.info("...........................................imagePurchaseProgress {}.{}",name,tag);
         String scope=name+":pull";
       //  Map tokeninfo= getNexusRequestToken(Common.getPropertiesKey(Common.MARKET_USERNAME),Common.getPropertiesKey(Common.MARKET_PWD));
       //  Map tokenMap=  JacksonUtils.json2map(tokeninfo);
@@ -163,14 +163,15 @@ public class RegistryAccessService {
         logger.info("\nbegin to pull image********************************\n{}",jsonObject);
         jsonObject = pullMarketCodeNexus(jsonObject,requestHeader);
         logger.info("\n previous info :{}\nPull Over begin to push image********************************",jsonObject);
-        JSONObject pushRes = pushImageNexus(jsonObject,requestHeader);
+       // JSONObject pushRes = pushImageNexus(jsonObject,requestHeader);
+        JSONObject pushRes =pushImage(jsonObject);// pushImageNexus(jsonObject,requestHeader);
         logger.info("push OVER    {}",pushRes);
         if (Boolean.valueOf((Boolean) pushRes.get("success"))) {
 
             logger.info("upload manifest :{}",new String(sManifest));
 
-            JSONObject info = uploadManifestNexus(name, tag, sManifest,requestHeader);// upload Manifest
-
+            //JSONObject info = uploadManifestNexus(name, tag, sManifest,requestHeader);// upload Manifest
+            JSONObject info = uploadManifest(name, tag, sManifest);// upload Manifest
             if ((Boolean) info.get("success")) {
                 logger.info("@@@@@success to execute !!!!!!!");
                 result.put("msg","success");
@@ -602,7 +603,7 @@ public class RegistryAccessService {
                     end = begin + length - 1;
                     if (length < bufferSize && end == (file.length() - 1)) {
                         isLast = true;
-                        location = appednDigets2(location, layerName);
+                        location = appednDigets(location, layerName);
                     }
                     logger.info("\nlocation:{}\nlength:{}\nbegin:{}\nend:{}\nisLast:{}", location, length, begin, end, isLast);
                     result = httpUtils.uploadLayerChunk(location, length, begin, end, buffer, isLast, length);

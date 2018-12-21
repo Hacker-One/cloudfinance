@@ -151,7 +151,57 @@ public class HTTPUtils {
 
 
     }
+    public JSONObject sendJsonBodyAPI(String url, String method, Map<String, String> header,byte[] body)
+            throws Exception {
+        String encoding = "UTF-8";
+        URL Url = new URL(url);
+        trustAllHttpsCertificates();
+        HttpURLConnection httpConnection = (HttpURLConnection) Url
+                .openConnection();
+        // 设置请求时间
+        httpConnection.setConnectTimeout(TIMEOUT);
+        // 设置 header
+        JSONObject result = new JSONObject();
+        httpConnection.setDoOutput(true);
+        httpConnection.setDoInput(true);
+        httpConnection.setUseCaches(false);
+        httpConnection.setRequestProperty("Connection", "Keep-Alive");
+        httpConnection.setRequestProperty("Charset", "UTF-8");
+        httpConnection.setRequestProperty("Accept", "*/*");
+        // 设置文件类型:
+        httpConnection.setRequestProperty("Content-Type", "application/json");
+        if (header != null) {
+            Iterator<String> iteratorHeader = header.keySet()
+                    .iterator();
+            while (iteratorHeader.hasNext()) {
+                String key = iteratorHeader.next();
+                httpConnection.setRequestProperty(key,header.get(key));
+            }
+        }
+        // 设置接收类型否则返回415错误
+        // 设置请求方法
+        httpConnection.setRequestMethod(method);
+        if (body != null && body.length > 0) {
+            httpConnection.setRequestProperty("Content-Length", String.valueOf(body.length));
+            OutputStream writer = httpConnection.getOutputStream();
+            writer.write(body);
+            writer.flush();
+        }
+        // 请求结果
+        int responseCode = httpConnection.getResponseCode();
+        logger.info("code:{}", responseCode);
+        if (responseCode == 201 || responseCode == 200) {
+            logger.info("success {}", inputStream2String(httpConnection.getInputStream(), encoding));
+            result.put("success", true);
+            return result;
+        } else {
+            logger.info("error {}", inputStream2String(httpConnection.getErrorStream(), encoding));
+            result.put("success", false);
+            return result;
+        }
 
+
+    }
 
 
     public JSONObject sendJsonBody(String url, String method,byte[] body)
@@ -1221,7 +1271,7 @@ public class HTTPUtils {
                     .put(RequestBody.create(MEDIA_TYPE_MARKDOWN, chunk,0,length))
                     .addHeader("Content-Length", String.valueOf(size))
                     .addHeader("Content-Range", beginAndEnd)
-                    .addHeader("Content-Type", "application/octet-stream")
+//                    .addHeader("Content-Type", "application/octet-stream")
                     .addHeader("Connection", "Keep-Alive")
                     .addHeader("Charset", "UTF-8")
                     .addHeader("Accept", "*/*")

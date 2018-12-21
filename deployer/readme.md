@@ -10,5 +10,3 @@
 [program:ingress]
 directory=/app/target/paas
 command=sh start.sh endpoint.conf
-
-test

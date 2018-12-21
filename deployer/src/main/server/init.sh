@@ -2,35 +2,25 @@
 
 export SERVER_HOME=$(cd `dirname $0`; pwd)
 export QBIT_CONF_FILE="$SERVER_HOME/qloudbus.conf"
-export DATA_SOURCE_FILE="$SERVER_HOME/dataSource.properties"
+#export DATA_SOURCE_FILE="$SERVER_HOME/dataSource.properties"
 export SYS_CONFIGURE="$SERVER_HOME/configure.properties"
-export MARKET_SERVICE_CONF="$SERVER_HOME/market-service.conf"
-#cat > $DATA_SOURCE_FILE  <<EOF
-#	        poolclass=druid
-#          	driverClassName=com.mysql.jdbc.Driver
-#          	url=jdbc:mysql://${DB_URL}/${DB_NAME}?autoReconnect=true&characterEncoding=UTF-8
-#          	username=${DB_USER}
-#          	password=${DB_PWD}
-#          	initialSize=1
-#          	minIdle=1
-#         	maxActive=5
+#export MARKET_SERVICE_CONF="$SERVER_HOME/market-service.conf"
+
+#cat > $MARKET_SERVICE_CONF  <<EOF
+#{
+#
+#   "qloudConsul": false,  // disable or enable consul
+#   "consulService": "http://192.168.56.103:8500/v1/agent/service/helloworld", // consul service
+#   "rootURI": "",
+#   "host": "${MARKET_SERVICE_IP}",   // address
+#   "port": ${MARKET_SERVICE_PORT},          // port
+#   "protocol": "ws",      // http | ws
+#   "ssl": false,
+#   "batchSize": "100",
+#   "flushInterval": "20"
+#
+#}
 #EOF
-
-cat > $MARKET_SERVICE_CONF  <<EOF
-{
-
-   "qloudConsul": false,  // disable or enable consul
-   "consulService": "http://192.168.56.103:8500/v1/agent/service/helloworld", // consul service
-   "rootURI": "",
-   "host": "${MARKET_SERVICE_IP}",   // address
-   "port": ${MARKET_SERVICE_PORT},          // port
-   "protocol": "ws",      // http | ws
-   "ssl": false,
-   "batchSize": "100",
-   "flushInterval": "20"
-
-}
-EOF
 
 cat > $SYS_CONFIGURE  <<EOF
 
@@ -63,7 +53,8 @@ cat > $SYS_CONFIGURE  <<EOF
  marketAgent.VERSION=${VersionCode}
  marketAgent.upload.SIZE=${UpLoadBlockSize}
  marketAgent.VOLUME=${vlum}
-
+ authBaseAddress=${AUTH_ADDRESS}
+ auth_apiKey=${APIKEY}
 EOF
 
 
