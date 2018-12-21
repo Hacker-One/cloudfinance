@@ -1,0 +1,52 @@
+node {
+    currentBuild.result = "SUCCESS"
+    def mvnHome   = tool 'maven_3_5_4'
+
+    name_list     = "$JOB_NAME".split('/') //eg : 'qloudservice-qloudapi/master' --> ['qloudservice-qloudapi', 'master']
+    def ver       = name_list[1]           //eg : 'master'
+    def job       = name_list[0]           //eg : 'qloudservice-qloudapi'
+    job_list      = "$job".split('-')      //eg : 'qloudservice-qloudapi' --> ['qloudservice', 'qloudapi']
+    def project   = job_list[0]            //eg : 'qloudservice'
+    def img       = job_list[1]
+
+
+    def ver_map = ["master": "latest"]
+    if(ver_map.containsKey(ver)){
+        ver = ver_map.get(ver)
+    }
+
+    def tag = "reg.qloud.com/'${ project }'/'${ img }':'${ ver }'"
+
+    try {
+        stage('Check out') {
+            checkout scm
+        }
+        stage('Build') {
+            withEnv(["PATH+MAVEN=${ mvnHome }/bin"]) {
+                sh "mvn clean package"        //执行mvn命令
+            }
+        }
+
+        stage('Docker build') {
+            sh("docker build -t ${tag} .")
+            sh("docker push ${tag}")
+            sh("docker rmi ${tag}")
+        }
+
+        stage('Cleanup') {
+
+            withEnv(["PATH+MAVEN=${ mvnHome }/bin"]) {
+                sh "mvn -Dmaven.test.failure.ignore clean"
+                sh "rm -rf *"
+            }
+
+        }
+
+
+    } catch (err) {
+
+        currentBuild.result = "FAILURE"
+        throw err
+    }
+}
+
